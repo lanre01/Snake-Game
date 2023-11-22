@@ -91,7 +91,7 @@ public class MyFrame extends JPanel implements KeyListener
 				repaint();
 				try
 				{
-					sleep(300);
+					sleep(30);
 				} catch (Exception e)
 				{
 					e.printStackTrace();
