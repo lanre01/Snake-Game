@@ -6,12 +6,11 @@
 
 <p>This version of the Snake Game is simple yet challenging, designed to keep you engaged for hours. It features smooth gameplay and easy controls making it a perfect pastime for those who want to challenge their reflexes and timing skills. Enjoy the game and aim for the high score!</p>
 <p>The purpose of this project is to refactor the source code for the snake game to improve the maintainability, readability and also ensure new functionality can be added to the source code without breaking the game.</p>
-<br>This is the class diagram before refactoring and maintenance 
+<br>__This is the class diagram before refactoring and maintenance__
 ![class diagram](/docs/classdiagram.png/)
-<br>This is my class diagram after the refactoring and maintenance
+<br>__This is my class diagram after the refactoring and maintenance__
 ![class diagram](/docs/refactoredclassdiagram.png/)
 
--- class diagram after
 ##### Testing
 [test](/docs/test.md/)
 
