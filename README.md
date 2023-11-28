@@ -3,10 +3,10 @@
 ## Snake Game
 ##### About the Game
 ###### Class Diagram before Refactoring
-[class diagram] (/docs/class diagram.png/)
+![class diagram](/docs/classdiagram.png/)
 -- class diagram after
 ##### Test
-[test] (/docs/test.md/)
+[test](/docs/test.md/)
 
 
 
