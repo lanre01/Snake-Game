@@ -57,25 +57,7 @@ public class MyFrame extends JPanel implements KeyListener
 
 		new MyThread().start();
 	}
-	class MyThread extends Thread
-	{
-		@Override
-		public void run()
-		{
-			super.run();
-			while (true)
-			{
-				repaint();
-				try
-				{
-					sleep(30);
-				} catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+
 
 	@Override
 	public void keyTyped(KeyEvent e)
@@ -98,6 +80,25 @@ public class MyFrame extends JPanel implements KeyListener
 
 	}
 
+	class MyThread extends Thread
+	{
+		@Override
+		public void run()
+		{
+			super.run();
+			while (true)
+			{
+				repaint();
+				try
+				{
+					sleep(30);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	public static class MySnake extends SnakeObject implements movable
 	{
 		// Leikjabreytan.
