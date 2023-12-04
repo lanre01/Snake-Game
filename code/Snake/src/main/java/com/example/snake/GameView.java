@@ -1,4 +1,4 @@
-package example;
+package com.example.snake;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package example;
+package com.example.snake;
 
 public class Main {
 
