@@ -57,6 +57,17 @@ public interface Model {
      */
     int getHighScore();
 
+    /**
+     * set the current player score
+     * @param Score value of the current player
+     */
+    void setScore(int Score);
+
+    /**
+     * returns the already stored score
+     * @return the current player score
+     */
+    int getScore();
 
 
 }

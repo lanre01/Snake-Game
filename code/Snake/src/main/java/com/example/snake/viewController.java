@@ -2,6 +2,7 @@ package com.example.snake;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -11,12 +12,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class viewController implements Controller{
-        private  Model model;
-        private  View view;
+public class viewController implements Controller {
+
+        Model model;
+        View view;
+
 
         @FXML
-        private Button continueuButton;
+        private Canvas canvas;
+
+        @FXML
+        private Button continueButton;
 
         @FXML
         private MenuItem easy;
@@ -75,16 +81,16 @@ public class viewController implements Controller{
 
         @FXML
         void onContinue(MouseEvent event) {
-                try {
+                if(nameLabel.getText().length() <= 5) {
+                        if(nameLabel.getText().length() > 0)
+                                playerName.setText("Player: " + nameLabel.getText());
+                }
+                else {
                         playerName.setText("Player: " + nameLabel.getText().substring(0,5));
-                } catch (Exception e) {
-                        ;
                 }
 
-
-
                 nameLabel.setVisible(false);
-                continueuButton.setVisible(false);
+                continueButton.setVisible(false);
                 questionLabel.setVisible(false);
         }
 
@@ -99,21 +105,28 @@ public class viewController implements Controller{
                 }
         }
 
+
+
+
         @Override
         public void initialise(View view, Model model) {
                 this.model = model;
                 this.view = view;
-                model.setHighScore(0);
-                model.setHasFinished(false);
         }
 
         @Override
         public void startup() {
-
+                model.setHasFinished(false);
+                this.draw();
         }
 
         @Override
         public void update(int length, int score) {
+                this.model.setScore(this.model.getScore() + score);
+                this.model.setSnakeLength(this.model.getSnakeLength() + length);
+        }
+
+        private  void draw() {
 
         }
 }
