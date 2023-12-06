@@ -1,4 +1,4 @@
-package com.example.snake;
+package com.example.snakeproject;
 
 public class GameModel implements Model{
     int highScore, score, snakeLength;

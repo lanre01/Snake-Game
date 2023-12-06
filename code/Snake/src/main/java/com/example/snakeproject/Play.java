@@ -1,4 +1,4 @@
-package com.example.snake;
+package com.example.snakeproject;
 
 import java.awt.Color;
 import java.awt.Font;

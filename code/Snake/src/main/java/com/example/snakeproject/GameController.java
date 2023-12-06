@@ -1,4 +1,4 @@
-package com.example.snake;
+package com.example.snakeproject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,12 +12,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class viewController implements Controller {
+public class GameController implements Controller {
 
         Model model;
         View view;
 
-
+        @FXML
+        private Menu scoreMenu;
         @FXML
         private Canvas canvas;
 
@@ -79,6 +80,7 @@ public class viewController implements Controller {
 
         }
 
+
         @FXML
         void onContinue(MouseEvent event) {
                 if(nameLabel.getText().length() <= 5) {
@@ -112,6 +114,12 @@ public class viewController implements Controller {
         public void initialise(View view, Model model) {
                 this.model = model;
                 this.view = view;
+                model.setSnakeLength(1);
+                model.setScore(0);
+                model.setHighScore(0);
+                highScorer.setText("High Score: " + model.getHighScore());
+
+
         }
 
         @Override
@@ -126,7 +134,19 @@ public class viewController implements Controller {
                 this.model.setSnakeLength(this.model.getSnakeLength() + length);
         }
 
+        @Override
+        public void onKeyPressed(KeyEvent event) {
+
+        }
+
+        @Override
+        public void startOrPauseGame() {
+
+        }
+
         private  void draw() {
 
         }
+
+
 }

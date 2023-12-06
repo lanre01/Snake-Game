@@ -1,4 +1,6 @@
-package com.example.snake;
+package com.example.snakeproject;
+
+import javafx.scene.input.KeyEvent;
 
 public interface Controller {
     /**
@@ -21,4 +23,16 @@ public interface Controller {
      * @param score The score to be added to the game score
      */
     void update( int length, int score );
+
+    /**
+     * listen for key press
+     * change the direction of the snake depending on the key pressed
+     * @param event for the key pressed
+     */
+    void onKeyPressed (KeyEvent event);
+
+    /**
+     * start or pause the game
+     */
+    void startOrPauseGame();
 }

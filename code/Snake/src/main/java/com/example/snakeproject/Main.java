@@ -1,4 +1,4 @@
-package com.example.snake;
+package com.example.snakeproject;
 
 public class Main {
 
@@ -10,8 +10,7 @@ public class Main {
     public  Main() {
         model = new GameModel();
         controller = new GameController();
-        //view = new GameView();
-        view = new HelloApplication();
+        view = new GameView();
 
         controller.initialise(view, model);
         view.initialise(model, controller, 800, 800);
