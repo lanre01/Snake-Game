@@ -1,6 +1,9 @@
 package com.example.snakeGame;
 
-import java.awt.*;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 
 public abstract class GameObject {
     int xPosition, yPosition, objectWidth, objectHeight;
@@ -9,14 +12,14 @@ public abstract class GameObject {
      * draw the game object
      * @param graphics on the view.
      */
-    public abstract void draw(Graphics graphics);
+    public abstract void draw(GraphicsContext graphics);
 
     /**
      * used to get the position and size of the game object.
      * @return the rectangle covered by the game object.
      */
-    public Rectangle getRectangle()
+    public Rectangle2D getRectangle()
     {
-        return new Rectangle(xPosition, yPosition, objectWidth, objectHeight);
+        return new Rectangle2D(xPosition, yPosition, objectWidth, objectHeight);
     }
 }

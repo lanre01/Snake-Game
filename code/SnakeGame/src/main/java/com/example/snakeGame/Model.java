@@ -2,6 +2,11 @@ package com.example.snakeGame;
 
 public interface Model {
     /**
+     * initialise the model
+     * set the initial score to zero
+     */
+    void initialise();
+    /**
      * sets the player name. Player can choose to play as anonymous
      * @param player The name of the player
      */

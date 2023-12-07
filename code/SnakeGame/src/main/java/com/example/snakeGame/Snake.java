@@ -2,15 +2,17 @@ package com.example.snakeGame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Snake extends GameObject implements movable {
     int xPosition, yPosition, objectWidth, objectHeight;
     public static List<Point> bodyPoints = new LinkedList<>();
-    private static final BufferedImage IMG_SNAKE_HEAD = (BufferedImage) ImageUtil.images.get("snake-head-right");
-    private static BufferedImage newImgSnakeHead;
+    private static final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
+    private static Image newImgSnakeHead;
     boolean up, down, left, right = true;
     private final int snakeSpeed = 5;
     private int spacing;
@@ -25,8 +27,8 @@ public class Snake extends GameObject implements movable {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.image = image;
-        this.objectHeight = image.getHeight(null);
-        this.objectWidth = image.getWidth(null);
+        this.objectHeight = (int) image.getHeight();
+        this.objectWidth = (int) image.getWidth();
         spacing = objectWidth / snakeSpeed;
         length = 1;
     }
@@ -72,32 +74,34 @@ public class Snake extends GameObject implements movable {
      * @param graphics on the view.
      */
     @Override
-    public void draw(Graphics graphics) {
-        if(!outOfBounds() && !eatBody()) {
+    public void draw(GraphicsContext graphics) {
+        /*if(!outOfBounds() && eatBody()) {
             bodyPoints.add( new Point( xPosition, yPosition ) );
 
             if (bodyPoints.size() == (this.length + 1) * spacing) {
                 bodyPoints.remove(0);
             }
-            graphics.drawImage(newImgSnakeHead, xPosition, yPosition, null);
-            drawBody(graphics);
+
+
 
             move();
-        }
+        }*/
+        graphics.drawImage(newImgSnakeHead, xPosition, yPosition);
+        //drawBody(graphics);
     }
 
     /**
      * draw the body of the snake
      * @param g is the graphics to be drawn.
      */
-    public void drawBody(Graphics g)
+    public void drawBody(GraphicsContext g)
     {
         int length = bodyPoints.size() - 1 - spacing;
 
         for (int i = length; i >= spacing; i -= spacing)
         {
             Point point = bodyPoints.get(i);
-            g.drawImage(this.image, point.x, point.y, null);
+            g.drawImage(this.image, point.x, point.y);
         }
     }
 
@@ -116,7 +120,7 @@ public class Snake extends GameObject implements movable {
                     left = false;
                     right = false;
 
-                    newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
+                    newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
                 }
                 break;
 
@@ -127,7 +131,7 @@ public class Snake extends GameObject implements movable {
                     left = false;
                     right = false;
 
-                    newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
+                    newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
                 }
                 break;
 
@@ -138,7 +142,7 @@ public class Snake extends GameObject implements movable {
                     down = false;
                     left = true;
 
-                    newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
+                    newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
 
                 }
                 break;

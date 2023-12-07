@@ -1,9 +1,11 @@
 package com.example.snakeGame;
 
+import javafx.scene.canvas.GraphicsContext;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
+import javafx.scene.image.Image;
 import java.awt.event.KeyEvent;
 
 /**
@@ -20,7 +22,7 @@ public class Play extends MyFrame
 	private static final long serialVersionUID = -3641221053272056036L;
 
 	public MySnake mySnake = new MySnake(100, 100);// x , y
-	public Food food = new Food();
+	//public Food food = new Food();
 
 	public Image background = ImageUtil.images.get("UI-background");
 	public Image fail = ImageUtil.images.get("game-scene-01");
@@ -35,8 +37,8 @@ public class Play extends MyFrame
 	@Override
 	public void paint(Graphics g)
 	{
-		super.paint(g);
-		g.drawImage(background, 0, 0, null);
+		/*super.paint(g);
+		g.drawImage(background, 0, 0);
 
 		// Ákveða stöðu leiksins.
 		if (mySnake.l)
@@ -54,7 +56,7 @@ public class Play extends MyFrame
 		{
 			g.drawImage(fail, 0, 0, null);
 		}
-		drawScore(g);
+		drawScore(g);*/
 	}
 
 	public void drawScore(Graphics g)

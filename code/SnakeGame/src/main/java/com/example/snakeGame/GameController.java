@@ -3,19 +3,27 @@ package com.example.snakeGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GameController implements Controller {
 
         Model model;
         View view;
+        private  final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
+          Snake snake = new Snake(160, 160, IMG_SNAKE_HEAD);
+        Food food;
 
         @FXML
         private Menu scoreMenu;
@@ -94,6 +102,8 @@ public class GameController implements Controller {
                 nameLabel.setVisible(false);
                 continueButton.setVisible(false);
                 questionLabel.setVisible(false);
+                food = new Food(canvas.getHeight(), canvas.getWidth());
+                this.draw();
         }
 
         @FXML
@@ -117,7 +127,8 @@ public class GameController implements Controller {
                 model.setSnakeLength(1);
                 model.setScore(0);
                 model.setHighScore(0);
-                highScorer.setText("High Score: " + model.getHighScore());
+
+                //highScorer.setText("High Score: " + model.getHighScore());
 
 
         }
@@ -125,7 +136,7 @@ public class GameController implements Controller {
         @Override
         public void startup() {
                 model.setHasFinished(false);
-                this.draw();
+                //this.draw();
         }
 
         @Override
@@ -145,8 +156,13 @@ public class GameController implements Controller {
         }
 
         private  void draw() {
-
+                //GraphicsContext g = canvas.getGraphicsContext2D();
+                snake.draw(canvas.getGraphicsContext2D());
+                this.food.draw(canvas.getGraphicsContext2D());
         }
-
+        /**
+         * the controller draws the snake
+         * the controller draws the food
+         */
 
 }

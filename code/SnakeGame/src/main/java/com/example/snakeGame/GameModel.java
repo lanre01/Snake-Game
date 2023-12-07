@@ -7,6 +7,13 @@ public class GameModel implements Model{
     boolean food;
 
     @Override
+    public void initialise() {
+        this.score = 0;
+        this.snakeLength = 1;
+        this.highScore = 0;
+    }
+
+    @Override
     public void setPlayerName(String player) {
         this.playerName = player;
     }

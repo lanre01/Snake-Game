@@ -1,5 +1,8 @@
 package com.example.snakeGame;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -107,11 +110,11 @@ public class MyFrame extends  JPanel implements KeyListener
 		private int num; // ?
 		public int score = 0;
 
-		private static final BufferedImage IMG_SNAKE_HEAD = (BufferedImage) ImageUtil.images.get("snake-head-right");
+		private static final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
 
 		public static List<Point> bodyPoints = new LinkedList<>();
 
-		private static BufferedImage newImgSnakeHead;
+		private static Image newImgSnakeHead;
 		boolean up, down, left, right = true;
 
 		public MySnake(int x, int y)
@@ -120,8 +123,8 @@ public class MyFrame extends  JPanel implements KeyListener
 			this.x = x;
 			this.y = y;
 			this.i = ImageUtil.images.get("snake-body");
-			this.w = i.getWidth(null);
-			this.h = i.getHeight(null);
+			this.w = (int) i.getWidth();
+			this.h = (int) i.getHeight();
 
 			this.speed_XY = 5;
 			this.length = 1;
@@ -157,7 +160,7 @@ public class MyFrame extends  JPanel implements KeyListener
 					left = false;
 					right = false;
 
-					newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
+					newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
 				}
 				break;
 
@@ -169,7 +172,7 @@ public class MyFrame extends  JPanel implements KeyListener
 					left = false;
 					right = false;
 
-					newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
+					newImgSnakeHead =  GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
 				}
 				break;
 
@@ -181,7 +184,7 @@ public class MyFrame extends  JPanel implements KeyListener
 					left = true;
 					right = false;
 
-					newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
+					newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
 
 				}
 				break;
@@ -223,7 +226,7 @@ public class MyFrame extends  JPanel implements KeyListener
 		}
 
 		@Override
-		public void draw(Graphics g)
+		public void draw(GraphicsContext g)
 		{
 			outofBounds();
 			eatBody();
@@ -234,7 +237,7 @@ public class MyFrame extends  JPanel implements KeyListener
 			{
 				bodyPoints.remove(0);
 			}
-			g.drawImage(newImgSnakeHead, x, y, null);
+			g.drawImage(newImgSnakeHead, x, y);
 			drawBody(g);
 
 			move();
@@ -254,14 +257,14 @@ public class MyFrame extends  JPanel implements KeyListener
 			}
 		}
 
-		public void drawBody(Graphics g)
+		public void drawBody(GraphicsContext g)
 		{
 			int length = bodyPoints.size() - 1 - num;
 
 			for (int i = length; i >= num; i -= num)
 			{
 				Point point = bodyPoints.get(i);
-				g.drawImage(this.i, point.x, point.y, null);
+				g.drawImage(this.i, point.x, point.y);
 			}
 		}
 
@@ -286,7 +289,7 @@ public class MyFrame extends  JPanel implements KeyListener
 
 		public boolean l;
 
-		public abstract void draw(Graphics g);
+		public abstract void draw(GraphicsContext g);
 
 		public Rectangle getRectangle()
 		{

@@ -1,38 +1,29 @@
 package com.example.snakeGame;
 
-import java.awt.Graphics;
 import java.util.Random;
 
-public class Food extends MyFrame.SnakeObject
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
+
+public class Food extends GameObject
 {
+	double frameHeight, frameWidth;
 
-	private static final long serialVersionUID = -3641221053272056036L;
-
-
-
-	public Food()	{
-		this.l = true;
-
-		this.i = ImageUtil.images.get(String.valueOf(new Random().nextInt(10)));
-
-		this.w = i.getWidth(null);
-		this.h = i.getHeight(null);
-
-		this.x = (int) (Math.random() * (870 - w + 10));
-		this.y = (int) (Math.random() * (560 - h - 40));
+	public Food(double frameHeight, double frameWidth)	{
+		this.frameHeight = frameHeight;
+		this.frameWidth = frameWidth;
+		this.image = ImageUtil.images.get(String.valueOf(new Random().nextInt(16)));
+		this.objectWidth = (int) image.getWidth();
+		this.objectHeight = (int) image.getHeight();
+		this.xPosition = (int) (Math.random() * (this.frameWidth - this.objectWidth + 10));
+		this.yPosition = (int) (Math.random() * (this.frameHeight - this.objectHeight - 40));
 	}
 
-	public void eaten(MyFrame.MySnake mySnake) 	{
+	public boolean eaten(Snake snake) 	{
 
-		if (mySnake.getRectangle().intersects(this.getRectangle()) && l && mySnake.l)		{
-			this.l = false;
-			mySnake.changeLength(mySnake.getLength() + 1);
-			mySnake.score += 521;
-		}
-	}
+        return snake.getRectangle().intersects(this.getRectangle());
+    }
 	@Override
-	public void draw(Graphics g)
-	{
-		g.drawImage(i, x, y, null);
-	}
+	public void draw(GraphicsContext g) { g.drawImage(image, xPosition, yPosition); }
+
 }

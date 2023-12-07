@@ -12,15 +12,13 @@ public class Main {
         controller = new GameController();
         view = new GameView();
 
-        controller.initialise(view, model);
+        model.initialise();
         view.initialise(model, controller, 800, 800);
-
-
+        controller.initialise(view, model);
         controller.startup();
     }
 
     public static void main(String[] args) {
-
         new Main();
     }
 }

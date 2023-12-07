@@ -1,37 +1,44 @@
 package com.example.snakeGame;
-
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.net.URL;
-import javax.imageio.ImageIO;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.paint.Color;
+import java.util.Objects;
 
 public class GameUtil {
 	public GameUtil() {
 	}
 
 	public static Image getImage(String imagePath) {
-		URL u = GameUtil.class.getClassLoader().getResource(imagePath);
-
-		BufferedImage i = null;
-
+		Image image = null;
 		try {
-			i = ImageIO.read(u);
+			image = new Image(Objects.requireNonNull(GameUtil.class.getResourceAsStream(imagePath)));
 		} catch (Exception e) {
-			System.err.println("ERROR : IMAGE NOT FOUND !\n");
-			System.err.println(imagePath);
 			//e.printStackTrace();
+			System.err.println(imagePath);
 		}
 
-		return i;
+		return  image;
 	}
 
 
 
-	public static Image rotateImage(BufferedImage bufferedImage, int degree) {
-		int w = bufferedImage.getWidth();
+	public static Image rotateImage(Image image, int degree) {
+		ImageView imageView = new ImageView(image);
+		imageView.setRotate(degree);
+
+		SnapshotParameters params = new SnapshotParameters();
+		params.setFill(Color.TRANSPARENT);
+
+        return imageView.snapshot(params, null);
+
+
+
+
+
+
+
+		/*int w = bufferedImage.getWidth();
 		int h = bufferedImage.getHeight();
 		int t = bufferedImage.getColorModel().getTransparency();
 		BufferedImage i;
@@ -40,6 +47,6 @@ public class GameUtil {
 		graphics2d.rotate(Math.toRadians((double)degree), (double)(w / 2), (double)(h / 2));
 		graphics2d.drawImage(bufferedImage, 0, 0, (ImageObserver)null);
 		graphics2d.dispose();
-		return i;
+		return i;*/
 	}
 }
