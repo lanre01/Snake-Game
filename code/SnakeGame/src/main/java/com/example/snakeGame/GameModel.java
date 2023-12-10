@@ -1,21 +1,22 @@
 package com.example.snakeGame;
 
 public class GameModel implements Model{
-    int highScore, score, snakeLength;
-    String playerName;
-    boolean hasFinished;
-    boolean food;
+    private static int highScore, score, snakeLength;
+    private static String playerName;
+    private static boolean hasFinished;
+    private static boolean food;
+    private static boolean start;
 
     @Override
     public void initialise() {
-        this.score = 0;
-        this.snakeLength = 1;
-        this.highScore = 0;
+        score = 0;
+        snakeLength = 1;
+        highScore = 0;
     }
 
     @Override
     public void setPlayerName(String player) {
-        this.playerName = player;
+        playerName = player;
     }
 
 
@@ -27,7 +28,7 @@ public class GameModel implements Model{
 
     @Override
     public void setSnakeLength(int length) {
-        this.snakeLength = length;
+        snakeLength = length;
     }
 
 
@@ -45,13 +46,13 @@ public class GameModel implements Model{
 
     @Override
     public void setHasFinished(boolean finished) {
-        this.hasFinished = finished;
+        hasFinished = finished;
     }
 
 
     @Override
     public void setFood(boolean food) {
-        this.food = food;
+        GameModel.food = food;
     }
 
 
@@ -62,7 +63,7 @@ public class GameModel implements Model{
 
     @Override
     public void setHighScore(int score) {
-        this.highScore = score;
+        highScore = score;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class GameModel implements Model{
 
     @Override
     public void setScore(int score) {
-        this.score = score;
+        GameModel.score = score;
     }
 
     @Override
@@ -80,6 +81,15 @@ public class GameModel implements Model{
         return score;
     }
 
+    @Override
+    public boolean start() {
+        return start;
+    }
+
+    @Override
+    public void setStart(boolean start) {
+        GameModel.start = start;
+    }
 
 
 }

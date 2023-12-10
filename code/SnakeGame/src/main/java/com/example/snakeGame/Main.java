@@ -4,18 +4,19 @@ public class Main {
 
     Controller controller;
     Model model;
-
     View view;
+    ViewController vController;
 
     public  Main() {
         model = new GameModel();
         controller = new GameController();
         view = new GameView();
+        vController = new ViewController();
 
+        vController.initialise(controller);
         model.initialise();
-        view.initialise(model, controller, 800, 800);
         controller.initialise(view, model);
-        controller.startup();
+        view.initialise(model, controller, 0, 0);
     }
 
     public static void main(String[] args) {

@@ -1,10 +1,13 @@
 package com.example.snakeGame;
 
-//import javazoom.jl.player.Player;
+import javazoom.jl.player.Player;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 
 public class MusicPlayer extends Thread
 {
-	/*
+
 	private String filename;
 	public Player player;
 
@@ -44,7 +47,7 @@ public class MusicPlayer extends Thread
 	{
 		MusicPlayer musicPlayer = new MusicPlayer(filename);
 		musicPlayer.play();
-	}*/
+	}
 
 
 

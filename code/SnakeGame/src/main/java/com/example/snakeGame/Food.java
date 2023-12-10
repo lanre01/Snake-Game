@@ -1,9 +1,7 @@
 package com.example.snakeGame;
 
 import java.util.Random;
-
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Rectangle;
 
 public class Food extends GameObject
 {

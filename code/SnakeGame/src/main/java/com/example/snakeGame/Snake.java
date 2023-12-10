@@ -1,7 +1,8 @@
 package com.example.snakeGame;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
+
+import javafx.scene.input.KeyEvent;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -11,12 +12,16 @@ import java.util.List;
 public class Snake extends GameObject implements movable {
     int xPosition, yPosition, objectWidth, objectHeight;
     public static List<Point> bodyPoints = new LinkedList<>();
-    private static final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
-    private static Image newImgSnakeHead;
-    boolean up, down, left, right = true;
+    private  Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
+    private  Image newImgSnakeHead = ImageUtil.images.get("snake-head-right");
+    boolean up, down, left;
+    boolean right = true;
     private final int snakeSpeed = 5;
     private int spacing;
     int length;
+    double canvasWidth;
+    double canvasHeight;
+
     /**
      * Constructor for the Snake class
      * @param xPosition of the snake on the view
@@ -34,19 +39,28 @@ public class Snake extends GameObject implements movable {
     }
 
     /**
+     * set the maximum width and height of the frame the snake draws on.
+     * @param canvasWidth the width of the canvas
+     * @param canvasHeight the height of the canvas
+     */
+    public void setFrameWidthHeight ( double canvasWidth, double canvasHeight ) {
+        this.canvasHeight = canvasHeight;
+        this.canvasWidth = canvasWidth;
+    }
+    /**
      * Checks if the snack has collided with its own body.
      * @return true if the snake has collided with itself, the game can end and false if otherwise.
      */
     public boolean eatBody()
     {
-        boolean body = true;
+        boolean body = false;
         for (Point point : bodyPoints)
         {
             for (Point point2 : bodyPoints)
             {
                 if (point.equals(point2) && point != point2)
                 {
-                   return false;
+                   return true;
                 }
             }
         }
@@ -57,14 +71,15 @@ public class Snake extends GameObject implements movable {
      * Checks if the snake is out of bound
      * @return true if the snake is out of bounds, the game can end and false if otherwise.
      */
-    private boolean outOfBounds()
-    {   boolean bounds = false;
-        boolean xOut = (this.xPosition <= 0 || this.xPosition >= (870 - objectWidth));
-        boolean yOut = (this.yPosition <= 40 || this.yPosition >= (560 - objectHeight));
+    public boolean outOfBounds()
+    {
+
+        boolean bounds = false;
+        boolean xOut = (this.xPosition <= 0 || this.xPosition >= (this.canvasWidth - objectWidth));
+        boolean yOut = (this.yPosition <= 0 || this.yPosition >= (this.canvasHeight - objectHeight));
         if (xOut || yOut)
-        {
             return true;
-        }
+
         return  bounds;
     }
 
@@ -74,20 +89,22 @@ public class Snake extends GameObject implements movable {
      * @param graphics on the view.
      */
     @Override
-    public void draw(GraphicsContext graphics) {
-        /*if(!outOfBounds() && eatBody()) {
+    public void draw( GraphicsContext graphics ) {
+
+
             bodyPoints.add( new Point( xPosition, yPosition ) );
 
             if (bodyPoints.size() == (this.length + 1) * spacing) {
                 bodyPoints.remove(0);
             }
 
+            graphics.drawImage(newImgSnakeHead, xPosition, yPosition);
 
+            drawBody(graphics);
 
             move();
-        }*/
-        graphics.drawImage(newImgSnakeHead, xPosition, yPosition);
-        //drawBody(graphics);
+
+
     }
 
     /**
@@ -105,15 +122,16 @@ public class Snake extends GameObject implements movable {
         }
     }
 
+
     /**
      * controls the direction the snake is facing
      * @param e can only be the arrow keys left, right, up, down.
      */
     public void keyPressed(KeyEvent e)
     {
-        switch (e.getKeyCode())
+        switch (e.getCode())
         {
-            case KeyEvent.VK_UP:
+            case KP_UP:
                 if (!down)
                 {
                     up = true;
@@ -124,7 +142,7 @@ public class Snake extends GameObject implements movable {
                 }
                 break;
 
-            case KeyEvent.VK_DOWN:
+            case KP_DOWN:
                 if (!up)
                 {
                     down = true;
@@ -135,7 +153,7 @@ public class Snake extends GameObject implements movable {
                 }
                 break;
 
-            case KeyEvent.VK_LEFT:
+            case KP_LEFT:
                 if (!right)
                 {
                     up = false;
@@ -147,7 +165,7 @@ public class Snake extends GameObject implements movable {
                 }
                 break;
 
-            case KeyEvent.VK_RIGHT:
+            case KP_RIGHT:
                 if (!left)
                 {
                     up = false;

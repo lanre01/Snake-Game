@@ -1,5 +1,6 @@
 package com.example.snakeGame;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 
 public interface Controller {
@@ -12,17 +13,18 @@ public interface Controller {
 
     /**
      * Startup the game
-     * Stores the current score and compare with the game high score
-     * saves the score if the score is higher or discard if otherwise
+     * Stores the current score and compare with the game high score.
+     * saves the score if the score is higher or discard if otherwise.
      */
-    void startup();
+    void startup(Canvas canvas);
 
     /**
-     * Update the model when the snake eats a food
-     * @param length The value to be added to the snake length
-     * @param score The score to be added to the game score
+     * Update the model when the snake eat food.
+     * Checks if the game has ended or paused before drawing the snake and food.
+     * update the score of the game.
+     * draw the snake and the food.
      */
-    void update( int length, int score );
+    void update();
 
     /**
      * listen for key press
@@ -34,5 +36,5 @@ public interface Controller {
     /**
      * start or pause the game
      */
-    void startOrPauseGame();
+    //void startOrPauseGame();
 }

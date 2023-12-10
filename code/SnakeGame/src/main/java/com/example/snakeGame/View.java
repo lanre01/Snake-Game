@@ -20,4 +20,5 @@ public interface View {
      * provide option for the user to either continue or end the game
      */
     void feedbackToUser();
+
 }

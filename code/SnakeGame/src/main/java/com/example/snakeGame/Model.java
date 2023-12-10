@@ -70,9 +70,21 @@ public interface Model {
 
     /**
      * returns the already stored score
-     * @return the current player score
+     * @return the current player score.
      */
     int getScore();
+
+    /**
+     * stores whether the game is paused or running.
+     * @return true if the game is currently running and false if otherwise.
+     */
+    boolean start();
+
+    /**
+     * set the current state of the program to either start or paused.
+     * @param start is true when the game is running and false when the game is paused.
+     */
+    void setStart(boolean start);
 
 
 }
