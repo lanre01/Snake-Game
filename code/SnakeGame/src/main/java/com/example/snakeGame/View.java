@@ -8,7 +8,7 @@ public interface View {
      * @param height The height of the frame for the snake game
      * @param width The width of the frame for the snake game
      */
-    void initialise( Model model, Controller controller, int height, int width );
+    void initialise( Model model, Controller controller, ViewController VController );
 
     /**
      * Refresh the display

@@ -36,7 +36,7 @@ public class GameController implements Controller {
                 model.setFood(true);
                 model.setHasFinished(false);
                 model.setSnakeLength(1);
-                snake.setFrameWidthHeight( canvas.getHeight(), canvas.getWidth() );
+                snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
                 food = new Food( canvas.getHeight(), canvas.getWidth());
           }
 
@@ -63,13 +63,18 @@ public class GameController implements Controller {
                                 food = new Food( canvas.getHeight(), canvas.getWidth() );
                         }
 
+                        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                         snake.draw(canvas.getGraphicsContext2D());
                         food.draw(canvas.getGraphicsContext2D());
+                        snake.move();
                 }
+
+
 
         }
 
         private void gameFinished() {
+
         }
 
         @Override

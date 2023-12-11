@@ -18,7 +18,6 @@ public class Food extends GameObject
 	}
 
 	public boolean eaten(Snake snake) 	{
-
         return snake.getRectangle().intersects(this.getRectangle());
     }
 	@Override

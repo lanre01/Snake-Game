@@ -4,15 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class ViewController {
     static Controller controller;
+    static Model model;
 
     @FXML
-    private Menu scoreMenu;
+    private static Menu scoreMenu;
     @FXML
     private Canvas canvas;
 
@@ -72,7 +74,8 @@ public class ViewController {
     @FXML
     void keyPressed(KeyEvent event) {
         controller.onKeyPressed(event);
-        System.out.println("lawal");
+        if(event.getCode() == KeyCode.UP)
+            System.out.println("lawal");
     }
 
 
@@ -104,7 +107,13 @@ public class ViewController {
         }
     }
 
-    public void initialise(Controller controller) {
+    public void initialise(Controller controller, Model model) {
         ViewController.controller = controller;
+        ViewController.model = model;
     }
+
+    public void setScore() {
+        scoreMenu.setText("Score: " + model.getScore());
+    }
+
 }

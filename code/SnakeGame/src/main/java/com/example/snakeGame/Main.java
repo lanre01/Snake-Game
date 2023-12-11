@@ -13,10 +13,10 @@ public class Main {
         view = new GameView();
         vController = new ViewController();
 
-        vController.initialise(controller);
+        vController.initialise(controller, model);
         model.initialise();
         controller.initialise(view, model);
-        view.initialise(model, controller, 0, 0);
+        view.initialise(model, controller, vController);
     }
 
     public static void main(String[] args) {

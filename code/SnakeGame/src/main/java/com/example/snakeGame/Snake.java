@@ -2,6 +2,7 @@ package com.example.snakeGame;
 
 import java.awt.*;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -91,20 +92,15 @@ public class Snake extends GameObject implements movable {
     @Override
     public void draw( GraphicsContext graphics ) {
 
+        bodyPoints.add( new Point( xPosition, yPosition ) );
 
-            bodyPoints.add( new Point( xPosition, yPosition ) );
+        if (bodyPoints.size() == (this.length + 1) * spacing) {
+            bodyPoints.remove(0);
+        }
 
-            if (bodyPoints.size() == (this.length + 1) * spacing) {
-                bodyPoints.remove(0);
-            }
-
-            graphics.drawImage(newImgSnakeHead, xPosition, yPosition);
-
-            drawBody(graphics);
-
-            move();
-
-
+        graphics.drawImage(newImgSnakeHead, xPosition, yPosition);
+        drawBody(graphics);
+        //move();
     }
 
     /**
@@ -131,7 +127,7 @@ public class Snake extends GameObject implements movable {
     {
         switch (e.getCode())
         {
-            case KP_UP:
+            case UP:
                 if (!down)
                 {
                     up = true;
@@ -142,7 +138,7 @@ public class Snake extends GameObject implements movable {
                 }
                 break;
 
-            case KP_DOWN:
+            case DOWN:
                 if (!up)
                 {
                     down = true;
@@ -153,7 +149,7 @@ public class Snake extends GameObject implements movable {
                 }
                 break;
 
-            case KP_LEFT:
+            case LEFT:
                 if (!right)
                 {
                     up = false;
@@ -165,7 +161,7 @@ public class Snake extends GameObject implements movable {
                 }
                 break;
 
-            case KP_RIGHT:
+            case RIGHT:
                 if (!left)
                 {
                     up = false;

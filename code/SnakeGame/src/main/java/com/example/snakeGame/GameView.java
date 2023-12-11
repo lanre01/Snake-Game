@@ -17,6 +17,7 @@ import java.io.IOException;
 public class GameView extends Application implements View   {
     Model model;
     static Controller controller;
+    static  ViewController vController;
     int frameHeight, frameWidth;
     public Image background = ImageUtil.images.get("UI-background");
     public Image fail = ImageUtil.images.get("game-scene-01");
@@ -24,11 +25,10 @@ public class GameView extends Application implements View   {
     Timeline timeline;
 
     @Override
-    public void initialise(Model model, Controller controller, int height, int width) {
+    public void initialise(Model model, Controller controller, ViewController VController) {
         this.model = model;
         GameView.controller = controller;
-        this.frameHeight = height;
-        this.frameWidth = width;
+        GameView.vController = VController;
         launch();
     }
 
@@ -50,8 +50,9 @@ public class GameView extends Application implements View   {
 
     private void UIInit(Stage stage) throws IOException {
         timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), e -> {
-            this.refreshView();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(30), e -> {
+            controller.update();
+            //vController.setScore();
         }));
 
         timeline.setCycleCount(Timeline.INDEFINITE);
