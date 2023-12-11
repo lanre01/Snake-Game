@@ -4,6 +4,8 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -59,6 +61,12 @@ public class GameView extends Application implements View   {
 
         FXMLLoader fxmlLoader = new FXMLLoader(GameView.class.getResource("game-view.fxml"));
         scene = new Scene(fxmlLoader.load());
+
+        scene.addEventFilter(Event.ANY, event -> {
+            if (event instanceof KeyEvent keyEvent) {
+                controller.onKeyPressed(keyEvent);
+            }});
+
         stage.setTitle("Snake Yipee");
         stage.setScene(scene);
         stage.setResizable(false);

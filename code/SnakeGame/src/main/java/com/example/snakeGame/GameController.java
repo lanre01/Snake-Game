@@ -1,17 +1,20 @@
 package com.example.snakeGame;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class GameController implements Controller {
 
         Model model;
         View view;
-        private static final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
-        static Snake snake = new Snake(20, 20, IMG_SNAKE_HEAD);
+        private static final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-body");
+        Snake snake = new Snake(20, 20, IMG_SNAKE_HEAD);
         Food food;
         Canvas canvas;
+        GraphicsContext graphicsContext;
 
 
 
@@ -21,15 +24,18 @@ public class GameController implements Controller {
                 this.view = view;
                 model.setScore(0);
                 model.setHighScore(0);
+                //snake = new Snake(20, 20, IMG_SNAKE_HEAD);
         }
 
         @Override
         public void startup(Canvas canvas) {
                 this.canvas = canvas;
+                graphicsContext = canvas.getGraphicsContext2D();
 
                 if (model.getHighScore() < model.getScore()) {
                    model.setHighScore(model.getScore());
                 }
+
 
                 model.setScore(0);
                 model.setStart(true);
@@ -38,6 +44,8 @@ public class GameController implements Controller {
                 model.setSnakeLength(1);
                 snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
                 food = new Food( canvas.getHeight(), canvas.getWidth());
+
+                //food.draw(graphicsContext);
           }
 
         @Override
@@ -59,13 +67,15 @@ public class GameController implements Controller {
                         }
                         if(food.eaten(snake)) {
                                 model.setScore( model.getScore() + 500 );
-                                model.setSnakeLength( model.getSnakeLength() + 1 );
+                                model.setSnakeLength(model.getSnakeLength() + 1 );
+                                snake.setLength(model.getSnakeLength());
                                 food = new Food( canvas.getHeight(), canvas.getWidth() );
                         }
 
                         canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                        snake.draw(canvas.getGraphicsContext2D());
-                        food.draw(canvas.getGraphicsContext2D());
+                        //GraphicsContext gc = canvas.getGraphicsContext2D();
+                        food.draw(graphicsContext);
+                        snake.draw(graphicsContext);
                         snake.move();
                 }
 
@@ -84,7 +94,12 @@ public class GameController implements Controller {
                  * Checks if any of the arrow key has been pressed.
                  * It may be used to check for other keys in later updates.
                  */
-                snake.keyPressed(event);
+                if(event.getCode() == KeyCode.ENTER)
+                {
+                        model.setStart(!model.start());
+                }
+                else
+                        snake.keyPressed(event);
         }
 
 }

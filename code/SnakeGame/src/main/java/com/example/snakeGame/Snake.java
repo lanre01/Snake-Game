@@ -11,14 +11,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Snake extends GameObject implements movable {
-    int xPosition, yPosition, objectWidth, objectHeight;
     public static List<Point> bodyPoints = new LinkedList<>();
-    private  Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
+    private final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
     private  Image newImgSnakeHead = ImageUtil.images.get("snake-head-right");
     boolean up, down, left;
     boolean right = true;
     private final int snakeSpeed = 5;
-    private int spacing;
+    private final int spacing;
     int length;
     double canvasWidth;
     double canvasHeight;
@@ -74,7 +73,6 @@ public class Snake extends GameObject implements movable {
      */
     public boolean outOfBounds()
     {
-
         boolean bounds = false;
         boolean xOut = (this.xPosition <= 0 || this.xPosition >= (this.canvasWidth - objectWidth));
         boolean yOut = (this.yPosition <= 0 || this.yPosition >= (this.canvasHeight - objectHeight));
@@ -91,10 +89,9 @@ public class Snake extends GameObject implements movable {
      */
     @Override
     public void draw( GraphicsContext graphics ) {
-
         bodyPoints.add( new Point( xPosition, yPosition ) );
 
-        if (bodyPoints.size() == (this.length + 1) * spacing) {
+        if (bodyPoints.size() >= (this.length + 1) * spacing) {
             bodyPoints.remove(0);
         }
 

@@ -97,7 +97,8 @@ public class ViewController {
     }
 
     @FXML
-    void pauseOrStartGame(ActionEvent event) {
+    void pauseOrStartGame(MouseEvent event) {
+        model.setStart(!model.start());
         String buffer = pauseButton.getText();
         if(buffer.compareToIgnoreCase("pause") == 0){
             pauseButton.setText("Play");
