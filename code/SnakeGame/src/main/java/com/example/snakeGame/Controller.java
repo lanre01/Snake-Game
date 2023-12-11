@@ -15,8 +15,9 @@ public interface Controller {
      * Startup the game
      * Stores the current score and compare with the game high score.
      * saves the score if the score is higher or discard if otherwise.
+     * @param object stores all parameters (menu, canvas) that need to be updated during the game
      */
-    void startup(Canvas canvas);
+    public void startup(ViewController.ObjectToNotify object) ;
 
     /**
      * Update the model when the snake eat food.
@@ -33,8 +34,4 @@ public interface Controller {
      */
     void onKeyPressed (KeyEvent event);
 
-    /**
-     * start or pause the game
-     */
-    //void startOrPauseGame();
 }

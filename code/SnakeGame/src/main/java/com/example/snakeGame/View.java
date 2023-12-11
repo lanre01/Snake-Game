@@ -5,10 +5,8 @@ public interface View {
      * Initialise the view
      * @param model The model which has the information about the board
      * @param controller The controller to inform when something happens - e.g. a space is selected
-     * @param height The height of the frame for the snake game
-     * @param width The width of the frame for the snake game
      */
-    void initialise( Model model, Controller controller, ViewController VController );
+    void initialise( Model model, Controller controller );
 
     /**
      * Refresh the display

@@ -1,10 +1,11 @@
 package com.example.snakeGame;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -13,8 +14,17 @@ public class ViewController {
     static Controller controller;
     static Model model;
 
+
     @FXML
-    private static Menu scoreMenu;
+    private Button ExitButton;
+
+    @FXML
+    private Button RestartButton;
+    @FXML
+    private ImageView endScene;
+
+    @FXML
+    private Menu scoreMenu;
     @FXML
     private Canvas canvas;
 
@@ -53,6 +63,16 @@ public class ViewController {
 
     @FXML
     private Label questionLabel;
+
+
+    @FXML
+    void restartGame(MouseEvent event) {
+        controller.startup(new ObjectToNotify(canvas, scoreMenu, ExitButton, RestartButton, endScene));
+    }
+    @FXML
+    void exitGame(MouseEvent event) {
+        ExitButton.setOnAction(e -> Platform.exit());
+    }
     @FXML
     void changeDifficulty(ActionEvent event) {
         if( event.getSource() == easy ){
@@ -66,16 +86,11 @@ public class ViewController {
         }
     }
 
-    @FXML
-    void exitGame(ActionEvent event) {
 
-    }
 
     @FXML
     void keyPressed(KeyEvent event) {
-        controller.onKeyPressed(event);
-        if(event.getCode() == KeyCode.UP)
-            System.out.println("lawal");
+
     }
 
 
@@ -93,7 +108,7 @@ public class ViewController {
         continueButton.setVisible(false);
         questionLabel.setVisible(false);
 
-        controller.startup(canvas);
+        controller.startup(new ObjectToNotify(canvas, scoreMenu, ExitButton, RestartButton, endScene));
     }
 
     @FXML
@@ -113,8 +128,31 @@ public class ViewController {
         ViewController.model = model;
     }
 
-    public void setScore() {
-        scoreMenu.setText("Score: " + model.getScore());
+    /**
+     * Store parameters that need to be updated when the snake game is running
+     * This class can be used to store value on the FXML view that needs to be updated
+     */
+    public class  ObjectToNotify {
+        public Menu scoreMenu;
+        public Canvas canvas;
+        public ImageView imageView;
+        public Button ExitButton;
+        public Button RestartButton;
+
+        /**
+         * Constructor for the class
+         * @param canvas for the controller to draw.
+         * @param scoreMenu displays the game score.
+         */
+        private ObjectToNotify(Canvas canvas, Menu scoreMenu, Button ExitButton, Button RestartButton, ImageView imgView) {
+            this.canvas = canvas;
+            this.scoreMenu = scoreMenu;
+            this.imageView = imgView;
+            this.ExitButton = ExitButton;
+            this.RestartButton = RestartButton;
+        }
+
     }
+
 
 }

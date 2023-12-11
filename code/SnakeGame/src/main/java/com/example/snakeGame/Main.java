@@ -16,7 +16,7 @@ public class Main {
         vController.initialise(controller, model);
         model.initialise();
         controller.initialise(view, model);
-        view.initialise(model, controller, vController);
+        view.initialise(model, controller);
     }
 
     public static void main(String[] args) {

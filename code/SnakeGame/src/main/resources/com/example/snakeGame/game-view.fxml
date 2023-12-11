@@ -50,5 +50,12 @@
       <Button fx:id="pauseButton" layoutX="438.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#pauseOrStartGame" prefHeight="45.0" prefWidth="79.0" text="Pause" textAlignment="CENTER" textFill="#140707" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0" />
       <TextField fx:id="nameLabel" layoutX="179.0" layoutY="175.0" prefHeight="25.0" prefWidth="93.0" promptText="Anonymous?" />
       <Button fx:id="continueButton" layoutX="298.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#onContinue" text="Continue" />
+      <ImageView fx:id="endScene" fitHeight="383.0" fitWidth="538.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@end.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="ExitButton" layoutX="200.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#exitGame" text="Exit" visible="false" />
+      <Button fx:id="RestartButton" layoutX="269.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#restartGame" text="Restart" visible="false" />
    </children>
 </AnchorPane>

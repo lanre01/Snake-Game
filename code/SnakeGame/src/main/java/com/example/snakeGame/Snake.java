@@ -35,7 +35,6 @@ public class Snake extends GameObject implements movable {
         this.objectHeight = (int) image.getHeight();
         this.objectWidth = (int) image.getWidth();
         spacing = objectWidth / snakeSpeed;
-        length = 1;
     }
 
     /**
@@ -97,7 +96,6 @@ public class Snake extends GameObject implements movable {
 
         graphics.drawImage(newImgSnakeHead, xPosition, yPosition);
         drawBody(graphics);
-        //move();
     }
 
     /**
@@ -120,7 +118,7 @@ public class Snake extends GameObject implements movable {
      * controls the direction the snake is facing
      * @param e can only be the arrow keys left, right, up, down.
      */
-    public void keyPressed(KeyEvent e)
+    public void keyPressed( KeyEvent e )
     {
         switch (e.getCode())
         {
@@ -183,6 +181,11 @@ public class Snake extends GameObject implements movable {
      * @return the length of the snake
      */
     public int getLength() {return this.length;}
+
+    public void resetSnake() {
+        bodyPoints.clear();
+    }
+
 
     /**
      * Controls the movement of the snake on the view.
