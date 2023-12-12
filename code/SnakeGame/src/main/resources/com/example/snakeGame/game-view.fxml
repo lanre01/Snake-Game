@@ -18,7 +18,7 @@
         <menus>
           <Menu fx:id="playerName" mnemonicParsing="false" text="Player Anonymous " />
           <Menu fx:id="scoreMenu" mnemonicParsing="false" text="Score : 0" />
-          <Menu mnemonicParsing="false" text="High Score: 0">
+          <Menu fx:id="highScore" mnemonicParsing="false" text="High Score: 0">
                <items>
                   <MenuItem fx:id="highScorer" mnemonicParsing="false" text="Name" />
                </items></Menu>

@@ -42,7 +42,8 @@ public class ViewController {
 
     @FXML
     private MenuItem hard;
-
+    @FXML
+    private Menu highScore;
     @FXML
     private MenuItem highScorer;
 
@@ -67,7 +68,7 @@ public class ViewController {
 
     @FXML
     void restartGame(MouseEvent event) {
-        controller.startup(new ObjectToNotify(canvas, scoreMenu, ExitButton, RestartButton, endScene));
+        controller.startup(new ObjectToNotify());
     }
     @FXML
     void exitGame(MouseEvent event) {
@@ -108,7 +109,7 @@ public class ViewController {
         continueButton.setVisible(false);
         questionLabel.setVisible(false);
 
-        controller.startup(new ObjectToNotify(canvas, scoreMenu, ExitButton, RestartButton, endScene));
+        controller.startup(new ObjectToNotify());
     }
 
     @FXML
@@ -138,18 +139,22 @@ public class ViewController {
         public ImageView imageView;
         public Button ExitButton;
         public Button RestartButton;
+        public MenuItem highScorer;
+        public Menu highScore;
+        public Menu playerName;
 
         /**
          * Constructor for the class
-         * @param canvas for the controller to draw.
-         * @param scoreMenu displays the game score.
          */
-        private ObjectToNotify(Canvas canvas, Menu scoreMenu, Button ExitButton, Button RestartButton, ImageView imgView) {
-            this.canvas = canvas;
-            this.scoreMenu = scoreMenu;
-            this.imageView = imgView;
-            this.ExitButton = ExitButton;
-            this.RestartButton = RestartButton;
+        private ObjectToNotify() {
+            this.canvas = ViewController.this.canvas;
+            this.scoreMenu = ViewController.this.scoreMenu;
+            this.imageView = ViewController.this.endScene;
+            this.ExitButton = ViewController.this.ExitButton;
+            this.RestartButton = ViewController.this.RestartButton;
+            this.highScorer = ViewController.this.highScorer;
+            this.highScore = ViewController.this.highScore;
+            this.playerName = ViewController.this.playerName;
         }
 
     }

@@ -4,6 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +20,8 @@ public class GameController implements Controller {
         Menu scoreMenu;
         Button exitButton, restartButton;
         ImageView endScene;
+        MenuItem highScorer;
+        Menu highScore, playerName;
 
         @Override
         public void initialise(View view, Model model) {
@@ -35,6 +38,10 @@ public class GameController implements Controller {
             this.endScene = object.imageView;
             this.restartButton = object.RestartButton;
             this.exitButton = object.ExitButton;
+            this.highScore = object.highScore;
+            this.highScorer = object.highScorer;
+            this.playerName = object.playerName;
+
             exitButton.setVisible(false);
             restartButton.setVisible(false);
             endScene.setVisible(false);
@@ -43,6 +50,8 @@ public class GameController implements Controller {
 
             if (model.getHighScore() < model.getScore()) {
                model.setHighScore(model.getScore());
+               highScorer.setText(playerName.getText());
+               highScore.setText("High Score: " + model.getHighScore());
             }
 
             model.setScore(0);
