@@ -20,7 +20,7 @@
           <Menu fx:id="scoreMenu" mnemonicParsing="false" text="Score : 0" />
           <Menu fx:id="highScore" mnemonicParsing="false" text="High Score: 0">
                <items>
-                  <MenuItem fx:id="highScorer" mnemonicParsing="false" text="Name" />
+                  <MenuItem fx:id="highScorer" mnemonicParsing="false" text="None" />
                </items></Menu>
             <Menu mnemonicParsing="false" text="Settings">
                <items>

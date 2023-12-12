@@ -13,7 +13,7 @@ public class GameController implements Controller {
         Model model;
         View view;
         private static final Image IMG_SNAKE_BODY = ImageUtil.images.get("snake-body");
-        static Snake snake = new Snake(20, 20, IMG_SNAKE_BODY);
+        static Snake snake ;
         Food food;
         Canvas canvas;
         GraphicsContext graphicsContext;
@@ -82,8 +82,7 @@ public class GameController implements Controller {
                 }
                 if(food.eaten(snake)) {
                     model.setScore( model.getScore() + 500 );
-                    model.setSnakeLength(model.getSnakeLength() + 1 );
-                    snake.setLength(model.getSnakeLength());
+                    snake.setLength(snake.getLength() + 1);
                     scoreMenu.setText("Score: " + model.getScore());
                     food = new Food( canvas.getHeight(), canvas.getWidth() );
                 }
