@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 
 public class GameController implements Controller {
         Model model;
@@ -18,10 +19,9 @@ public class GameController implements Controller {
         Canvas canvas;
         GraphicsContext graphicsContext;
         Menu scoreMenu;
-        Button exitButton, restartButton;
-        ImageView endScene;
         MenuItem highScorer;
         Menu highScore, playerName;
+        Pane endPane;
 
         @Override
         public void initialise(View view, Model model) {
@@ -36,17 +36,12 @@ public class GameController implements Controller {
          public void startup(ViewController.ObjectToNotify object) {
             this.canvas = object.canvas;
             this.scoreMenu = object.scoreMenu;
-            this.endScene = object.imageView;
-            this.restartButton = object.RestartButton;
-            this.exitButton = object.ExitButton;
             this.highScore = object.highScore;
             this.highScorer = object.highScorer;
             this.playerName = object.playerName;
+            this.endPane = object.endPane;
 
-            exitButton.setVisible(false);
-            restartButton.setVisible(false);
-            endScene.setVisible(false);
-
+            endPane.setVisible(false);
             graphicsContext = canvas.getGraphicsContext2D();
 
             if (model.getHighScore() < model.getScore()) {
@@ -104,9 +99,7 @@ public class GameController implements Controller {
         }
 
         private void gameFinished() {
-                restartButton.setVisible(true);
-                exitButton.setVisible(true);
-                endScene.setVisible(true);
+            endPane.setVisible(true);
         }
 
         @Override

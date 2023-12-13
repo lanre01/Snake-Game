@@ -18,8 +18,8 @@ public class Food extends GameObject implements Timer
 		this.image = ImageUtil.images.get(String.valueOf(new Random().nextInt(16)));
 		this.objectWidth = image.getWidth();
 		this.objectHeight = image.getHeight();
-		this.xPosition = (int) (Math.random() * (this.frameWidth - this.objectWidth + 10));
-		this.yPosition = (int) (Math.random() * (this.frameHeight - this.objectHeight - 40));
+		this.xPosition = (int) (Math.random() * ( this.frameWidth - this.objectWidth * 2 ));
+		this.yPosition = (int) (Math.random() * ( this.frameHeight - this.objectHeight * 2 ));
 	}
 
 	public boolean eaten(Snake snake) 	{
