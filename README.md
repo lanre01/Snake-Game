@@ -7,11 +7,11 @@
 <p>This version of the Snake Game is simple yet challenging, designed to keep you engaged for hours. It features smooth gameplay and easy controls making it a perfect pastime for those who want to challenge their reflexes and timing skills. Enjoy the game and aim for the high score!</p>
 <p>The purpose of this project is to refactor the source code for the snake game to improve the maintainability, readability and also ensure new functionality can be added to the source code without breaking the game.</p>
 
-[Documentation](/docs/Documentaion.md/)
+[Documentation](/docs/Documentation.md/)
 
 <b>How to install and play the game</b>
 
-[Link to download source code] (lawal.com)
+[Link to download source code] (https:lawal.com)
 
 
 
