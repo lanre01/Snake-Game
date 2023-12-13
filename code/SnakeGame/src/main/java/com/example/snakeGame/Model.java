@@ -86,5 +86,16 @@ public interface Model {
      */
     void setStart(boolean start);
 
+    /**
+     * set the difficulty of the game
+     * @param difficulty is 1, 2 or 3. 1 = easy, 2 = medium, 3 = hard.
+     */
+    void setDifficulty(int difficulty);
+
+    /**
+     * @return returns the difficulty set by setDifficulty.
+     */
+    int getDifficulty();
+
 
 }

@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 public class ViewController {
     static Controller controller;
@@ -20,19 +21,22 @@ public class ViewController {
 
     @FXML
     private Button RestartButton;
-    @FXML
-    private ImageView endScene;
 
-    @FXML
-    private Menu scoreMenu;
     @FXML
     private Canvas canvas;
 
     @FXML
     private Button continueButton;
 
+
     @FXML
-    private MenuItem easy;
+    private MenuItem easyMenuButton;
+
+    @FXML
+    private Pane endPane;
+
+    @FXML
+    private ImageView endScene;
 
     @FXML
     private MenuItem exit;
@@ -41,17 +45,23 @@ public class ViewController {
     private MenuItem exit2;
 
     @FXML
-    private MenuItem hard;
+    private MenuItem hardMenuButton;
+
     @FXML
     private Menu highScore;
+
     @FXML
     private MenuItem highScorer;
 
     @FXML
     private AnchorPane mainAnchor;
 
+
     @FXML
-    private MenuItem medium;
+    private MenuItem mediumMenuButton;
+
+    @FXML
+    private MenuButton menuButtonForDifficulty;
 
     @FXML
     private TextField nameLabel;
@@ -65,10 +75,19 @@ public class ViewController {
     @FXML
     private Label questionLabel;
 
+    @FXML
+    private Menu scoreMenu;
+
+    @FXML
+    private Pane startPane;
+    @FXML
+    private ImageView rootImageView;
 
     @FXML
     void restartGame(MouseEvent event) {
-        controller.startup(new ObjectToNotify());
+        endPane.setVisible(false);
+        startPane.setVisible(true);
+        nameLabel.setDisable(true);
     }
     @FXML
     void exitGame(MouseEvent event) {
@@ -76,14 +95,17 @@ public class ViewController {
     }
     @FXML
     void changeDifficulty(ActionEvent event) {
-        if( event.getSource() == easy ){
-
+        if( event.getSource() == easyMenuButton ){
+            menuButtonForDifficulty.setText(easyMenuButton.getText());
+            model.setDifficulty(1);
         }
-        else if( event.getSource() == medium ) {
-
+        else if( event.getSource() == mediumMenuButton ) {
+            menuButtonForDifficulty.setText(mediumMenuButton.getText());
+            model.setDifficulty(2);
         }
-        else if( event.getSource() == hard ) {
-
+        else if( event.getSource() == hardMenuButton ) {
+            menuButtonForDifficulty.setText(hardMenuButton.getText());
+            model.setDifficulty(3);
         }
     }
 
@@ -105,10 +127,8 @@ public class ViewController {
             playerName.setText("Player: " + nameLabel.getText().substring(0,5));
         }
 
-        nameLabel.setVisible(false);
-        continueButton.setVisible(false);
-        questionLabel.setVisible(false);
-
+        startPane.setVisible(false);
+        pauseButton.setDisable(false);
         controller.startup(new ObjectToNotify());
     }
 
@@ -136,12 +156,10 @@ public class ViewController {
     public class  ObjectToNotify {
         public Menu scoreMenu;
         public Canvas canvas;
-        public ImageView imageView;
-        public Button ExitButton;
-        public Button RestartButton;
         public MenuItem highScorer;
         public Menu highScore;
         public Menu playerName;
+        public  Pane endPane;
 
         /**
          * Constructor for the class
@@ -149,12 +167,10 @@ public class ViewController {
         private ObjectToNotify() {
             this.canvas = ViewController.this.canvas;
             this.scoreMenu = ViewController.this.scoreMenu;
-            this.imageView = ViewController.this.endScene;
-            this.ExitButton = ViewController.this.ExitButton;
-            this.RestartButton = ViewController.this.RestartButton;
             this.highScorer = ViewController.this.highScorer;
             this.highScore = ViewController.this.highScore;
             this.playerName = ViewController.this.playerName;
+            this.endPane = ViewController.this.endPane;
         }
 
     }
