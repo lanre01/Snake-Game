@@ -51,7 +51,7 @@ public class GameView extends Application implements View   {
 
         stage.show();
         timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(30), e -> {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(40), e -> {
             controller.update();
         }));
 

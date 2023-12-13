@@ -56,9 +56,9 @@ public class GameController implements Controller {
             }
 
             model.setScore(0);
+            scoreMenu.setText("Score: 0");
             model.setStart(true);
             model.setHasFinished(false);
-            model.setSnakeLength(1);
             snake = new Snake(20, 20, IMG_SNAKE_BODY);
             snake.setLength(1);
             snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
@@ -76,19 +76,26 @@ public class GameController implements Controller {
                     model.setHasFinished(true);
                     model.setStart(false);
                     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    scoreMenu.setText("Score: 0");
+
                     snake.resetSnake();
                     this.gameFinished();
                     return;
                 }
                 if(food.eaten(snake)) {
-                    model.setScore( model.getScore() + 500 );
-                    snake.setLength(snake.getLength() + 1);
-                    scoreMenu.setText("Score: " + model.getScore());
+
+                    if(food.getFoodScore() != 0) {
+                        model.setScore( model.getScore() + food.getFoodScore() );
+                        snake.setLength( snake.getLength() + 1 );
+                        scoreMenu.setText( "Score: " + model.getScore() );
+                    }
+
                     food = new Food( canvas.getHeight(), canvas.getWidth() );
                 }
 
                 canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                if( model.getDifficulty() != 1 )
+                    food.decrementTime();
+
                 food.draw(graphicsContext);
                 snake.draw(graphicsContext);
                 snake.move(model.getDifficulty());

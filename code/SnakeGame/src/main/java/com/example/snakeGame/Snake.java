@@ -33,9 +33,9 @@ public class Snake extends GameObject implements movable {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.image = image;
-        this.objectHeight = (int) image.getHeight();
-        this.objectWidth = (int) image.getWidth();
-        spacing = objectWidth / snakeSpeed;
+        this.objectHeight = image.getHeight();
+        this.objectWidth = image.getWidth();
+        spacing = (int) (objectWidth / snakeSpeed);
         this.snakeHeadHeight = (int) IMG_SNAKE_HEAD.getHeight();
         this.snakeHeadWidth = (int) IMG_SNAKE_HEAD.getWidth();
     }
