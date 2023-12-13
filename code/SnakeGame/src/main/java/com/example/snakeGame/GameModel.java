@@ -1,11 +1,11 @@
 package com.example.snakeGame;
 
 public class GameModel implements Model{
-    private static int highScore, score, snakeLength;
-    private static String playerName;
-    private static boolean hasFinished;
-    private static boolean food;
-    private static boolean start;
+    private  int highScore, score, snakeLength, difficulty;
+    private  String playerName;
+    private boolean hasFinished;
+    private boolean food;
+    private boolean start;
 
     @Override
     public void initialise() {
@@ -52,7 +52,7 @@ public class GameModel implements Model{
 
     @Override
     public void setFood(boolean food) {
-        GameModel.food = food;
+        this.food = food;
     }
 
 
@@ -73,7 +73,7 @@ public class GameModel implements Model{
 
     @Override
     public void setScore(int score) {
-        GameModel.score = score;
+        this.score = score;
     }
 
     @Override
@@ -88,7 +88,17 @@ public class GameModel implements Model{
 
     @Override
     public void setStart(boolean start) {
-        GameModel.start = start;
+        this.start = start;
+    }
+
+    @Override
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    @Override
+    public int getDifficulty() {
+        return difficulty;
     }
 
 

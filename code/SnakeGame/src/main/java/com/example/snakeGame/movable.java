@@ -10,5 +10,5 @@ package com.example.snakeGame;
 
 public interface movable
 {
-	void move();
+	void move(int difficulty);
 }

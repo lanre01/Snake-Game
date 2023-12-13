@@ -13,7 +13,7 @@ public class GameController implements Controller {
         Model model;
         View view;
         private static final Image IMG_SNAKE_BODY = ImageUtil.images.get("snake-body");
-        static Snake snake ;
+        static Snake snake;
         Food food;
         Canvas canvas;
         GraphicsContext graphicsContext;
@@ -25,10 +25,11 @@ public class GameController implements Controller {
 
         @Override
         public void initialise(View view, Model model) {
-                this.model = model;
-                this.view = view;
-                model.setScore(0);
-                model.setHighScore(0);
+            this.model = model;
+            this.view = view;
+            model.setScore(0);
+            model.setHighScore(0);
+            model.setDifficulty(1);
         }
 
         @Override
@@ -71,7 +72,7 @@ public class GameController implements Controller {
                 return;
 
             if(model.start()) {
-                if(snake.eatBody() || snake.outOfBounds()) {
+                if(snake.eatBody() || snake.outOfBounds(model.getDifficulty())) {
                     model.setHasFinished(true);
                     model.setStart(false);
                     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -90,7 +91,7 @@ public class GameController implements Controller {
                 canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 food.draw(graphicsContext);
                 snake.draw(graphicsContext);
-                snake.move();
+                snake.move(model.getDifficulty());
             }
 
         }
@@ -103,6 +104,7 @@ public class GameController implements Controller {
 
         @Override
         public void onKeyPressed(KeyEvent event) {
+            if(event.getCode().isArrowKey())
                 snake.keyPressed(event);
         }
 

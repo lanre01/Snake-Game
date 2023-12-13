@@ -21,6 +21,7 @@ public class Snake extends GameObject implements movable {
     int length;
     double canvasWidth;
     double canvasHeight;
+    int snakeHeadWidth, snakeHeadHeight;
 
     /**
      * Constructor for the Snake class
@@ -35,6 +36,8 @@ public class Snake extends GameObject implements movable {
         this.objectHeight = (int) image.getHeight();
         this.objectWidth = (int) image.getWidth();
         spacing = objectWidth / snakeSpeed;
+        this.snakeHeadHeight = (int) IMG_SNAKE_HEAD.getHeight();
+        this.snakeHeadWidth = (int) IMG_SNAKE_HEAD.getWidth();
     }
 
     /**
@@ -70,8 +73,11 @@ public class Snake extends GameObject implements movable {
      * Checks if the snake is out of bound
      * @return true if the snake is out of bounds, the game can end and false if otherwise.
      */
-    public boolean outOfBounds()
+    public boolean outOfBounds(int difficulty)
     {
+        if(difficulty == 1)
+            return  false;
+
         boolean bounds = false;
         boolean xOut = (this.xPosition <= 0 || this.xPosition >= (this.canvasWidth - objectWidth));
         boolean yOut = (this.yPosition <= 0 || this.yPosition >= (this.canvasHeight - objectHeight));
@@ -192,7 +198,12 @@ public class Snake extends GameObject implements movable {
      * Add or subtract from the xPosition or yPosition based on the direction of the snake.
      */
     @Override
-    public void move() {
+    public void move(int difficulty) {
+        if(difficulty == 1){
+            this.easyMove();
+            return;
+        }
+
         if (up)
         {
             yPosition -= snakeSpeed;
@@ -205,6 +216,46 @@ public class Snake extends GameObject implements movable {
         } else if (right)
         {
             xPosition += snakeSpeed;
+        }
+    }
+
+    private void easyMove() {
+
+        if (up) {
+            this.yPosition -= snakeSpeed;
+            if((this.yPosition - objectHeight/5) <= 0) {
+                this.yPosition = (int) canvasHeight;
+                this.yPosition -= snakeSpeed;
+            }
+
+
+        } else if (down) {
+            this.yPosition += snakeSpeed;
+            if((this.yPosition + objectHeight) >= canvasHeight) {
+                this.yPosition = 0;
+                this.yPosition += snakeSpeed;
+            }
+
+
+
+        } else if (left) {
+            this.xPosition -= snakeSpeed;
+            if(this.xPosition- objectWidth/5 <= 0) {
+                this.xPosition = (int) canvasWidth;
+                this.xPosition -= snakeSpeed;
+            }
+
+
+        } else if (right) {
+            this.xPosition += snakeSpeed;
+            if((this.xPosition + objectWidth) >= canvasWidth){
+                this.xPosition = 0;
+                this.xPosition += snakeSpeed;
+                }
+
+
+
+
         }
     }
 }
