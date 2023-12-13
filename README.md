@@ -9,6 +9,8 @@
 
 [Documentation](/docs/Documentaion.md/)
 
+<b>How to install and play the game</b>
+
 [Link to download source code] (lawal.com)
 
 
