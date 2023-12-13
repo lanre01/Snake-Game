@@ -28,8 +28,6 @@ public class ViewController {
     @FXML
     private Button continueButton;
 
-    @FXML
-    private MenuItem easy;
 
     @FXML
     private MenuItem easyMenuButton;
@@ -47,9 +45,6 @@ public class ViewController {
     private MenuItem exit2;
 
     @FXML
-    private MenuItem hard;
-
-    @FXML
     private MenuItem hardMenuButton;
 
     @FXML
@@ -61,8 +56,6 @@ public class ViewController {
     @FXML
     private AnchorPane mainAnchor;
 
-    @FXML
-    private MenuItem medium;
 
     @FXML
     private MenuItem mediumMenuButton;
@@ -92,7 +85,9 @@ public class ViewController {
 
     @FXML
     void restartGame(MouseEvent event) {
-        controller.startup(new ObjectToNotify());
+        endPane.setVisible(false);
+        startPane.setVisible(true);
+        nameLabel.setDisable(true);
     }
     @FXML
     void exitGame(MouseEvent event) {
@@ -100,22 +95,16 @@ public class ViewController {
     }
     @FXML
     void changeDifficulty(ActionEvent event) {
-        if( event.getSource() == easy || event.getSource() == easyMenuButton){
-            if(menuButtonForDifficulty.isVisible())
-                menuButtonForDifficulty.setText(easyMenuButton.getText());
-
+        if( event.getSource() == easyMenuButton ){
+            menuButtonForDifficulty.setText(easyMenuButton.getText());
             model.setDifficulty(1);
         }
-        else if( event.getSource() == medium || event.getSource() == mediumMenuButton) {
-            if(menuButtonForDifficulty.isVisible())
-                menuButtonForDifficulty.setText(mediumMenuButton.getText());
-
+        else if( event.getSource() == mediumMenuButton ) {
+            menuButtonForDifficulty.setText(mediumMenuButton.getText());
             model.setDifficulty(2);
         }
-        else if( event.getSource() == hard || event.getSource() == hardMenuButton) {
-            if(menuButtonForDifficulty.isVisible())
-                menuButtonForDifficulty.setText(hardMenuButton.getText());
-
+        else if( event.getSource() == hardMenuButton ) {
+            menuButtonForDifficulty.setText(hardMenuButton.getText());
             model.setDifficulty(3);
         }
     }
@@ -139,7 +128,7 @@ public class ViewController {
         }
 
         startPane.setVisible(false);
-
+        pauseButton.setDisable(false);
         controller.startup(new ObjectToNotify());
     }
 

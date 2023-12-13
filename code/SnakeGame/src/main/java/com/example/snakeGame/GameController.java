@@ -22,6 +22,8 @@ public class GameController implements Controller {
         MenuItem highScorer;
         Menu highScore, playerName;
         Pane endPane;
+        Paddle paddleA, paddleB, paddleC;
+        boolean isPaddle = false;
 
         @Override
         public void initialise(View view, Model model) {
@@ -58,16 +60,19 @@ public class GameController implements Controller {
             snake.setLength(1);
             snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
             food = new Food( canvas.getHeight(), canvas.getWidth());
+            this.makePaddle();
          }
 
-        @Override
+
+
+    @Override
         public void update() {
 
             if(model.hasFinished())
                 return;
 
             if(model.start()) {
-                if(snake.eatBody() || snake.outOfBounds(model.getDifficulty())) {
+                if(snake.eatBody() || snake.outOfBounds(model.getDifficulty()) || !paddleIsSafe()) {
                     model.setHasFinished(true);
                     model.setStart(false);
                     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -76,6 +81,12 @@ public class GameController implements Controller {
                     this.gameFinished();
                     return;
                 }
+
+                /**
+                 * check the food has been eaten
+                 * check if the paddle has not been collided with
+                 * in my startup function, i need to check if i should draw the paddle
+                 */
                 if(food.eaten(snake)) {
 
                     if(food.getFoodScore() != 0) {
@@ -94,18 +105,54 @@ public class GameController implements Controller {
                 food.draw(graphicsContext);
                 snake.draw(graphicsContext);
                 snake.move(model.getDifficulty());
+                this.drawPaddle();
             }
 
         }
 
-        private void gameFinished() {
-            endPane.setVisible(true);
+
+
+    private boolean paddleIsSafe() {
+        if(!isPaddle)
+            return  true;
+
+        return !paddleA.getRectangle().intersects(snake.getRectangle())
+                && !paddleB.getRectangle().intersects(snake.getRectangle())
+                && !paddleC.getRectangle().intersects(snake.getRectangle());
+    }
+
+    private void gameFinished() {
+        endPane.setVisible(true);
+    }
+
+    @Override
+    public void onKeyPressed(KeyEvent event) {
+        if(event.getCode().isArrowKey())
+            snake.keyPressed(event);
+    }
+
+    private void gameEnd() {
+
+    }
+
+    private void makePaddle() {
+        if(model.getDifficulty() == 3) {
+            paddleA = new Paddle(100, 100);
+            paddleB = new Paddle(400, 100);
+            paddleC = new Paddle(250,300 );
+            isPaddle = true;
         }
 
-        @Override
-        public void onKeyPressed(KeyEvent event) {
-            if(event.getCode().isArrowKey())
-                snake.keyPressed(event);
+    }
+
+    private void drawPaddle() {
+        if(model.getDifficulty() == 3) {
+            paddleA.draw(graphicsContext);
+            paddleB.draw(graphicsContext);
+            paddleC.draw(graphicsContext);
         }
+
+    }
+
 
 }
