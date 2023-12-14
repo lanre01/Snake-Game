@@ -9,13 +9,14 @@ public interface Model {
     /**
      * sets the player name. Player can choose to play as anonymous
      * @param player The name of the player
+     * @param  level is the level the player is player.
      */
-    void setPlayerName( String player );
+    void setPlayerName(String player, int level);
 
     /**
      * @return the player name.
      */
-    String getPlayerName();
+     String getPlayerName(int level);
 
     /**
      * set the length of the snake
@@ -55,12 +56,12 @@ public interface Model {
      * Stores the high score of the player.
      * @param score of the player if the score is greater than the stored high score.
      */
-    void setHighScore( int score );
+    void setHighScore(int score, int level);
 
     /**
      * @return the previously stored high score if there is otherwise returns 0.
      */
-    int getHighScore();
+    int getHighScore(int level);
 
     /**
      * set the current player score
@@ -88,14 +89,14 @@ public interface Model {
 
     /**
      * set the difficulty of the game
-     * @param difficulty is 1, 2 or 3. 1 = easy, 2 = medium, 3 = hard.
+     * @param level is 1, 2 or 3.
      */
-    void setDifficulty(int difficulty);
+    void setLevel(int level);
 
     /**
-     * @return returns the difficulty set by setDifficulty.
+     * @return returns the level set by setLevel.
      */
-    int getDifficulty();
+    int getLevel();
 
 
 }

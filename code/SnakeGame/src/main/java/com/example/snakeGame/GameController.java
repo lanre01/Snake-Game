@@ -30,8 +30,8 @@ public class GameController implements Controller {
             this.model = model;
             this.view = view;
             model.setScore(0);
-            model.setHighScore(0);
-            model.setDifficulty(1);
+            model.setLevel(1);
+            model.setHighScore(0, model.getLevel());
         }
 
         @Override
@@ -46,10 +46,10 @@ public class GameController implements Controller {
             endPane.setVisible(false);
             graphicsContext = canvas.getGraphicsContext2D();
 
-            if (model.getHighScore() < model.getScore()) {
-               model.setHighScore(model.getScore());
+            if (model.getHighScore(model.getLevel()) < model.getScore()) {
+               model.setHighScore(model.getScore(), model.getLevel());
                highScorer.setText(playerName.getText());
-               highScore.setText("High Score: " + model.getHighScore());
+               highScore.setText("High Score: " + model.getHighScore(model.getLevel()));
             }
 
             model.setScore(0);
@@ -63,62 +63,77 @@ public class GameController implements Controller {
             this.makePaddle();
          }
 
-
+    /**
+     * check if the game is finished ? return : continue
+     * check if game has started
+     * then - check if the game should stil continue - out of bounds, eaten itself, paddle not safe.
+     * check if food has been eaten
+     *      -- update the score
+     *      --i want to compare the score if the game can move to the next level
+     *      -- case true
+     *          -- model.setLevel = model.getLevel + 1
+         *          if model.getLevel > 3 ---game has finished -player won
+         *          otherwise i want to start the next leave.
+     *
+     *       -- case false
+     *       draw the food
+     *       draw the snake
+     *       draw the paddle
+     */
 
     @Override
-        public void update() {
+    public void update() {
 
-            if(model.hasFinished())
-                return;
+        if(model.hasFinished())
+            return;
 
-            if(model.start()) {
-                if(snake.eatBody() || snake.outOfBounds(model.getDifficulty()) || !paddleIsSafe()) {
-                    model.setHasFinished(true);
-                    model.setStart(false);
-                    canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-                    snake.resetSnake();
-                    this.gameFinished();
-                    return;
-                }
-
-                /**
-                 * check the food has been eaten
-                 * check if the paddle has not been collided with
-                 * in my startup function, i need to check if i should draw the paddle
-                 */
-                if(food.eaten(snake)) {
-
-                    if(food.getFoodScore() != 0) {
-                        model.setScore( model.getScore() + food.getFoodScore() );
-                        snake.setLength( snake.getLength() + 1 );
-                        scoreMenu.setText( "Score: " + model.getScore() );
-                    }
-
-                    food = new Food( canvas.getHeight(), canvas.getWidth() );
-                }
-
+        if(model.start()) {
+            if(snake.eatBody() || snake.outOfBounds(model.getLevel()) || !paddleIsSafe()) {
+                model.setHasFinished(true);
+                model.setStart(false);
                 canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                if( model.getDifficulty() != 1 )
-                    food.decrementTime();
 
-                food.draw(graphicsContext);
-                snake.draw(graphicsContext);
-                snake.move(model.getDifficulty());
-                this.drawPaddle();
+                snake.resetSnake();
+                this.gameFinished();
+                return;
             }
 
+            if(food.eaten(snake)) {
+
+                if(food.getFoodScore() != 0) {
+                    model.setScore( model.getScore() + food.getFoodScore() );
+                    this.checkGameScore();
+                    snake.setLength( snake.getLength() + 1 );
+                    scoreMenu.setText( "Score: " + model.getScore() );
+                }
+
+                food = new Food( canvas.getHeight(), canvas.getWidth() );
+            }
+
+            canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            if( model.getLevel() != 1 )
+                food.decrementTime();
+
+            food.draw(graphicsContext);
+            snake.draw(graphicsContext);
+            snake.move(model.getLevel());
+            this.drawPaddle();
         }
 
+    }
+
+    private void checkGameScore() {
+
+    }
 
 
     private boolean paddleIsSafe() {
         if(!isPaddle)
             return  true;
 
-        return !paddleA.getRectangle().intersects(snake.getRectangle())
-                && !paddleB.getRectangle().intersects(snake.getRectangle())
-                && !paddleC.getRectangle().intersects(snake.getRectangle());
+        return !paddleA.eaten(snake)
+                && !paddleB.eaten(snake)
+                && !paddleC.eaten(snake);
     }
 
     private void gameFinished() {
@@ -136,7 +151,7 @@ public class GameController implements Controller {
     }
 
     private void makePaddle() {
-        if(model.getDifficulty() == 3) {
+        if(model.getLevel() == 3) {
             paddleA = new Paddle(100, 100);
             paddleB = new Paddle(400, 100);
             paddleC = new Paddle(250,300 );
@@ -146,7 +161,7 @@ public class GameController implements Controller {
     }
 
     private void drawPaddle() {
-        if(model.getDifficulty() == 3) {
+        if(model.getLevel() == 3) {
             paddleA.draw(graphicsContext);
             paddleB.draw(graphicsContext);
             paddleC.draw(graphicsContext);

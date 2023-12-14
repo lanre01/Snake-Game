@@ -97,15 +97,15 @@ public class ViewController {
     void changeDifficulty(ActionEvent event) {
         if( event.getSource() == easyMenuButton ){
             menuButtonForDifficulty.setText(easyMenuButton.getText());
-            model.setDifficulty(1);
+            model.setLevel(1);
         }
         else if( event.getSource() == mediumMenuButton ) {
             menuButtonForDifficulty.setText(mediumMenuButton.getText());
-            model.setDifficulty(2);
+            model.setLevel(2);
         }
         else if( event.getSource() == hardMenuButton ) {
             menuButtonForDifficulty.setText(hardMenuButton.getText());
-            model.setDifficulty(3);
+            model.setLevel(3);
         }
     }
 
