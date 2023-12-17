@@ -21,7 +21,7 @@ public class GameController implements Controller {
     Menu scoreMenu;
     MenuItem highScorer, Level1, Level2, Level3;
     Menu highScore, playerName;
-    Pane endPane, ProgressPane;
+    Pane endPane, ProgressPane, congratPane;
     Paddle paddleA, paddleB, paddleC;
     boolean isPaddle = false;
     int minimumScore = 0;
@@ -65,6 +65,7 @@ public class GameController implements Controller {
         this.Level1 = object.Level1;
         this.Level2 = object.Level2;
         this.Level3 = object.Level3;
+        this.congratPane = object.congratPane;
     }
 
     @Override
@@ -163,7 +164,7 @@ public class GameController implements Controller {
     }
 
     private void gameEnd() {
-        
+        congratPane.setVisible(true);
     }
 
     private void makePaddle() {
