@@ -42,7 +42,14 @@
 ###### Test for Snake
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
- 
+|4.1|Test if snake detects if it has eat its own body|N/A|false*|false|Passed|Test was conducted but visually and using JUnit|
+|4.2|Test if snake detect if it is out of bound|N/A|false*|fasle|Passed|Test was conducted both visually and using JUnit|
+|4.3|Test if snake respond to arrow keys|N/A|Snake responds when arrow key is pressed| Snake responded when arrow key is pressed|Passed|Visual test|
+|4.4| Test if snake correctly set the length|length = 3| Lenght = 3| Lenght = 3| Passed|N/A|
+|4.5|Test if snake moves|N/A| Snake xPosition + 5| Snake xPositon + 5|Passed|N/A|
+|4.6|Test if snake returns a rectangle|N/A|Snake must return a rectangle|Snake returned a rectangle|Passed|N/A|
+|4.7|Test snake correctly clears body point when the game is lost|N/A|Snake clears body point|snake cleared body point|Passed|Visual test|
+
 
 
 
@@ -51,7 +58,8 @@
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
 |5.1|Test if image is correctly rotated|image|rotated image 90 degrees|||||
-|5.2|Test if image it reads image stored in project| image file name| image file|||| 
+|5.2|Test if image it reads image stored in project| image file name| image file|Image was returned|Passed|N/A| 
+|5.3|Test to check if image is correctly rotated|image|Image correcly rotated|Snake head was rotated correctly when the arrow keys are pressed|Passed|Visual test|
 
 
 
@@ -61,14 +69,18 @@
 ###### Test for ImageUtil
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
-|6.1|Test if all files required are stored|N/A|All files required||||
+|6.1|Test if the images harshmap is initialised|N/A|Images is inititalised|Images is initailised|Passed|N/A|
+|6.2|Test if all files required are stored|N/A|All files required||||
 
 
 
 ###### Test for Food
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
-||||||||
+|7.1|Test if the food disappears|N/A|Food should diappear in level 2 and 3|Food disappeared in level 2 and 3 and not level 1 if the snake does not eat the food ontime|Passed|Visual test|
+|7.2|Test if the food returns false if it has not been eaten|Snake snake|false|false|Pass|N/A|
+|7.3|Test if the food score is initially 300|N/A|300|300|Passed|N/A|
+|7.4|Test if food score decrements|N/A|297|297|Passed|N/A|
 
 
 
