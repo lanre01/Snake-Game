@@ -11,50 +11,48 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 public class GameController implements Controller {
-        Model model;
-        View view;
-        private static final Image IMG_SNAKE_BODY = ImageUtil.images.get("snake-body");
-        static Snake snake;
-        Food food;
-        Canvas canvas;
-        GraphicsContext graphicsContext;
-        Menu scoreMenu;
-        MenuItem highScorer, Level1, Level2, Level3;
-        Menu highScore, playerName;
-        Pane endPane, ProgressPane;
-        Paddle paddleA, paddleB, paddleC;
-        boolean isPaddle = false;
-        final private int MAX_LEVEL = 3;
-        private int totalScore = 0 ;
+    Model model;
+    View view;
+    private static final Image IMG_SNAKE_BODY = ImageUtil.images.get("snake-body");
+    static Snake snake;
+    Food food;
+    Canvas canvas;
+    GraphicsContext graphicsContext;
+    Menu scoreMenu;
+    MenuItem highScorer, Level1, Level2, Level3;
+    Menu highScore, playerName;
+    Pane endPane, ProgressPane;
+    Paddle paddleA, paddleB, paddleC;
+    boolean isPaddle = false;
+    int minimumScore = 0;
 
-        @Override
-        public void initialise(View view, Model model) {
-            this.model = model;
-            this.view = view;
+    @Override
+    public void initialise(View view, Model model) {
+        this.model = model;
+        this.view = view;
 
-            model.setLevel(1);
-            model.setHighScore(0);
-        }
+        model.setLevel(1);
+        model.setHighScore(0);
+    }
 
-        @Override
-         public void startup(ViewController.ObjectToNotify object) {
-            this.initialiseViewObjects(object);
+    @Override
+     public void startup(ViewController.ObjectToNotify object) {
+        this.initialiseViewObjects(object);
 
-            endPane.setVisible(false);
-            graphicsContext = canvas.getGraphicsContext2D();
-            if( model.getLevel() == 1) {
-                model.setScore(0, model.getLevel());
-            }
-            highScore.setText("High Score: " + model.getHighScore());
-            scoreMenu.setText("Score: " + model.getScore(model.getLevel()));
-            snake = new Snake(20, 20, IMG_SNAKE_BODY);
-            snake.setLength(1);
-            snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
-            food = new Food( canvas.getHeight(), canvas.getWidth());
-            this.makePaddle();
-            model.setStart(true);
-            model.setHasFinished(false);
-         }
+        endPane.setVisible(false);
+        graphicsContext = canvas.getGraphicsContext2D();
+
+        model.setScore(model.getMinimumScore(model.getLevel()), model.getLevel());
+        highScore.setText("High Score: " + model.getHighScore());
+        scoreMenu.setText("Score: " + model.getScore(model.getLevel()));
+        snake = new Snake(20, 20, IMG_SNAKE_BODY);
+        snake.setLength(1);
+        snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
+        food = new Food( canvas.getHeight(), canvas.getWidth());
+        this.makePaddle();
+        model.setStart(true);
+        model.setHasFinished(false);
+     }
 
     private void initialiseViewObjects(ViewController.ObjectToNotify object) {
         this.canvas = object.canvas;
@@ -68,24 +66,6 @@ public class GameController implements Controller {
         this.Level2 = object.Level2;
         this.Level3 = object.Level3;
     }
-
-    /**
-     * check if the game is finished ? return : continue
-     * check if game has started
-     * then - check if the game should stil continue - out of bounds, eaten itself, paddle not safe.
-     * check if food has been eaten
-     *      -- update the score
-     *      --i want to compare the score if the game can move to the next level
-     *      -- case true
-     *          -- model.setLevel = model.getLevel + 1
-         *          if model.getLevel > 3 ---game has finished -player won
-         *          otherwise i want to start the next leave.
-     *
-     *       -- case false
-     *       draw the food
-     *       draw the snake
-     *       draw the paddle
-     */
 
     @Override
     public void update() {
@@ -133,14 +113,12 @@ public class GameController implements Controller {
         if(model.getScore(model.getLevel()) < model.getMaxScore(model.getLevel()))
             return true;
 
-        if(model.getLevel() > MAX_LEVEL)
+        model.setStart(false);
+        if(model.getLevel() + 1 > model.getMaxLevel())
             this.gameEnd();
 
         else {
-            model.setStart(false);
-            model.setTotalScore(model.getTotalScore() + model.getScore(model.getLevel()));
             model.setLevel(model.getLevel() + 1);
-            model.setScore(0, model.getLevel());
             this.setLevelOptions();
             this.ProgressPane.setVisible(true);
         }
@@ -171,13 +149,10 @@ public class GameController implements Controller {
     }
 
     private void gameFinished() {
-        model.setTotalScore(model.getTotalScore() + model.getScore(model.getLevel()));
-
-        if(model.getTotalScore() > model.getHighScore()) {
+        if(model.getScore(model.getLevel()) > model.getHighScore()) {
             model.setHighScore( model.getScore(model.getLevel()) );
         }
-        model.setScore(0, model.getLevel());
-        //model.setScore(model.getScore(model.getLevel() - 1), model.getLevel());
+
         endPane.setVisible(true);
     }
 
@@ -188,7 +163,7 @@ public class GameController implements Controller {
     }
 
     private void gameEnd() {
-
+        
     }
 
     private void makePaddle() {

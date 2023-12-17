@@ -1,6 +1,7 @@
 package com.example.snakeGame;
 
 public interface Model {
+
     /**
      * initialise the model
      * set the initial score to zero
@@ -105,15 +106,18 @@ public interface Model {
      */
     int getMaxScore(int level);
 
-    /**
-     * @return the total score of the player
-     */
-    int getTotalScore();
 
     /**
-      * @param Score is the current total score of the player
+     *
+     * @param Level is the level of the game.
+     * @return the minimum score for the level.
      */
-    void setTotalScore(int Score);
+    int getMinimumScore( int Level );
 
+    /**
+     *
+     * @return the maximum level of the game.
+     */
+    int getMaxLevel();
 
 }
