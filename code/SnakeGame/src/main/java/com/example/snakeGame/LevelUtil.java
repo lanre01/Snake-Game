@@ -12,10 +12,8 @@ public class LevelUtil {
     }
 
     static {
-        images.put("1", GameUtil.getImage("Foods/food-lemon.png"));
-        images.put("2", GameUtil.getImage("Foods/food-litchi.png"));
-        images.put("3", GameUtil.getImage("Foods/food-mango.png"));
-
-
+        images.put("1", GameUtil.getImage("Scenes/UI-background.png"));
+        images.put("2", GameUtil.getImage("Scenes/UI-background2.png"));
+        images.put("3", GameUtil.getImage("Scenes/UI-background3.png"));
     }
 }

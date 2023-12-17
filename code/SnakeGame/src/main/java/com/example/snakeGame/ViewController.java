@@ -200,6 +200,7 @@ public class ViewController {
         public Pane endPane, congratPane;
         public Pane ProgressPane;
         public MenuItem Level1, Level2, Level3;
+        public  ImageView rootImage;
 
         /**
          * Constructor for the class
@@ -216,6 +217,7 @@ public class ViewController {
             this.Level2 = ViewController.this.Level2;
             this.Level3 = ViewController.this.Level3;
             this.congratPane = ViewController.this.CongratsPane;
+            this.rootImage = ViewController.this.rootImageView;
         }
 
     }

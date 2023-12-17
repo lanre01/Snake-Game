@@ -22,6 +22,7 @@ public class GameController implements Controller {
     MenuItem highScorer, Level1, Level2, Level3;
     Menu highScore, playerName;
     Pane endPane, ProgressPane, congratPane;
+    ImageView rootImage;
     Paddle paddleA, paddleB, paddleC;
     boolean isPaddle = false;
     int minimumScore = 0;
@@ -48,6 +49,7 @@ public class GameController implements Controller {
         snake = new Snake(20, 20, IMG_SNAKE_BODY);
         snake.setLength(1);
         snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
+        this.rootImage.setImage(LevelUtil.images.get("" + model.getLevel()));
         food = new Food( canvas.getHeight(), canvas.getWidth());
         this.makePaddle();
         model.setStart(true);
@@ -66,6 +68,7 @@ public class GameController implements Controller {
         this.Level2 = object.Level2;
         this.Level3 = object.Level3;
         this.congratPane = object.congratPane;
+        this.rootImage = object.rootImage;
     }
 
     @Override

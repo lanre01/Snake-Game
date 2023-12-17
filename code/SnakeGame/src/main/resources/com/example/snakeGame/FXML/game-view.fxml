@@ -40,7 +40,7 @@
       </MenuBar>
       <ImageView fx:id="rootImageView" fitHeight="427.0" fitWidth="616.0" layoutX="1.0" layoutY="42.0" pickOnBounds="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="42.0">
          <image>
-            <Image url="@../Scenes/1629702755362_84a39ede3284dfcaa71703c98647a8f5.jpg" />
+            <Image url="@../Scenes/home-scene.jpg" />
          </image>
       </ImageView>
       <Canvas fx:id="canvas" height="427.0" layoutX="-6.0" layoutY="50.0" onKeyPressed="#keyPressed" width="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
