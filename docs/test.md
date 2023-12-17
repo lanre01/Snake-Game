@@ -25,19 +25,18 @@
 |2.9|Test to see if the pause button pauses the game|N\A|snake stop moving|Snake stopped moving, game stopped updating| ||
 |2.10|Test to see if the pause button plays the game after it has been paused|N\A|game continues|Game continues when the play button is pressed|Passed| Visual test|
 |2.11|Test to see if snake changes direction with arrow keys|N\A|snake changes direction|Snake direction changed when arrow keys are pressed|Passed| Visual test|
-
+|2.12|Test if the game correctly displays the view|N/A|View must visble when the view is initialised|View is visible|Passed|Visual test|
 
 
 ###### Test for GameController
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
-|3.1| Test to check if the model and view are initailised|True | Model model, View view| ||
-|3.2|Test check if controller knows when game has finished|set gameFinished to true|the view does no update the snake||||
-|3.3|Test to check if the controller draws on the canvas|canvas|snake and food drawn||||
-|3.4|Test to check score menu is updated on the view during game|score=3000|score=3000||||
-|3.5|Test to check if score menu is zero at the start of the game|N/A|score=0||||
-|3.6|Test to check score menu is zero on restart of the game|N/A|score=0||||
-|3.7|Test to check highscore menu is updated|N/A|score must equal highest score||||
+|3.1| Test to check if the model and view are initailised|model and view| Model model, View view| model and view are intialised as game plays perfectly|Passed|Visual test| 
+|3.2|Test to check if the controller draws on the canvas|canvas|snake and food drawn||||
+|3.3|Test to check score menu is updated on the view during game|score=3000|score=3000|Score is updated|Passed|Visual test|
+|3.4|Test to check if score menu is zero at the start of the game|N/A|score=0|Score is zero|Passed|Visual test|
+|3.5|Test to check score menu is zero on restart of the game|N/A|score=0|Score is Zero|Passed|Visual test|
+|3.6|Test to check highscore menu is updated|N/A|score must equal highest score|HighScore was updated and highScore was the highest score|Passed|Visul test|
 
 
 ###### Test for Snake
