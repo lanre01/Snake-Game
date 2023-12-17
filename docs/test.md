@@ -3,11 +3,13 @@
 ###### Test for GameModel
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
-|1.1|Test if the model correctly set player name| String "lawal"| lawal| ||
-|1.2|Test if the model set the snake length| 2 | 2|||
-|1.3|Test if the model set the game hasfinished value correctly|true| true| ||
-|1.4| Test if the model set the food value correctly| true| true|||
-|1.5|Test if the model set the highscore to be the correct value| 3000|3000|||
+|1.1|Test if the model correctly set player name| String "lawal"| lawal| lawal|pass|N/A|
+|1.2|Test if the model set the game hasfinished value correctly|true| true| true| Pass|N/A|
+|1.3|Test if the model set the highscore to be the correct value| 1000|1000|1000|Pass|N/A|
+|1.4|Test if the model set the score to be the correct value| 300|300|300|Pass|N/A|
+|1.5|Test if model set start| true|true|true|Pass|N/A|
+|1.6|Test if model set Level| 2|2|2|Pass|N/A|
+|1.7|Test if model returns the correct minScore| 1|0|0|Pass|N/A|
 
 ###### Test for GameView
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
