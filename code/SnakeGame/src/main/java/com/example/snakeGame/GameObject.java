@@ -6,7 +6,8 @@ import javafx.scene.image.Image;
 
 
 public abstract class GameObject {
-    int xPosition, yPosition, objectWidth, objectHeight;
+    int xPosition, yPosition;
+    double objectWidth, objectHeight;
     Image image;
     /**
      * draw the game object

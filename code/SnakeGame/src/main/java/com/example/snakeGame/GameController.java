@@ -4,98 +4,190 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 
 public class GameController implements Controller {
-        Model model;
-        View view;
-        private static final Image IMG_SNAKE_BODY = ImageUtil.images.get("snake-body");
-        static Snake snake = new Snake(20, 20, IMG_SNAKE_BODY);
-        Food food;
-        Canvas canvas;
-        GraphicsContext graphicsContext;
-        Menu scoreMenu;
-        Button exitButton, restartButton;
-        ImageView endScene;
+    Model model;
+    View view;
+    private static final Image IMG_SNAKE_BODY = ImageUtil.images.get("snake-body");
+    static Snake snake;
+    Food food;
+    Canvas canvas;
+    GraphicsContext graphicsContext;
+    Menu scoreMenu;
+    MenuItem highScorer, Level1, Level2, Level3;
+    Menu highScore, playerName;
+    Pane endPane, ProgressPane, congratPane;
+    ImageView rootImage;
+    Paddle paddleA, paddleB, paddleC;
+    boolean isPaddle = false;
+    int minimumScore = 0;
 
-        @Override
-        public void initialise(View view, Model model) {
-                this.model = model;
-                this.view = view;
-                model.setScore(0);
-                model.setHighScore(0);
-        }
+    @Override
+    public void initialise(View view, Model model) {
+        this.model = model;
+        this.view = view;
 
-        @Override
-         public void startup(ViewController.ObjectToNotify object) {
-            this.canvas = object.canvas;
-            this.scoreMenu = object.scoreMenu;
-            this.endScene = object.imageView;
-            this.restartButton = object.RestartButton;
-            this.exitButton = object.ExitButton;
-            exitButton.setVisible(false);
-            restartButton.setVisible(false);
-            endScene.setVisible(false);
+        model.setLevel(1);
+        model.setHighScore(0);
+    }
 
-            graphicsContext = canvas.getGraphicsContext2D();
+    @Override
+     public void startup(ViewController.ObjectToNotify object) {
+        this.initialiseViewObjects(object);
 
-            if (model.getHighScore() < model.getScore()) {
-               model.setHighScore(model.getScore());
-            }
+        endPane.setVisible(false);
+        graphicsContext = canvas.getGraphicsContext2D();
 
-            model.setScore(0);
-            model.setStart(true);
-            model.setHasFinished(false);
-            model.setSnakeLength(1);
-            snake = new Snake(20, 20, IMG_SNAKE_BODY);
-            snake.setLength(1);
-            snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
-            food = new Food( canvas.getHeight(), canvas.getWidth());
-         }
+        model.setScore(model.getMinimumScore(model.getLevel()), model.getLevel());
+        highScore.setText("High Score: " + model.getHighScore());
+        scoreMenu.setText("Score: " + model.getScore(model.getLevel()));
+        snake = new Snake(20, 20, IMG_SNAKE_BODY);
+        snake.setLength(1);
+        snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
+        this.rootImage.setImage(LevelUtil.images.get("" + model.getLevel()));
+        food = new Food( canvas.getHeight(), canvas.getWidth());
+        this.makePaddle();
+        model.setStart(true);
+        model.setHasFinished(false);
+     }
 
-        @Override
-        public void update() {
+    private void initialiseViewObjects(ViewController.ObjectToNotify object) {
+        this.canvas = object.canvas;
+        this.scoreMenu = object.scoreMenu;
+        this.highScore = object.highScore;
+        this.highScorer = object.highScorer;
+        this.playerName = object.playerName;
+        this.endPane = object.endPane;
+        this.ProgressPane = object.ProgressPane;
+        this.Level1 = object.Level1;
+        this.Level2 = object.Level2;
+        this.Level3 = object.Level3;
+        this.congratPane = object.congratPane;
+        this.rootImage = object.rootImage;
+    }
 
-            if(model.hasFinished())
-                return;
+    @Override
+    public void update() {
 
-            if(model.start()) {
-                if(snake.eatBody() || snake.outOfBounds()) {
-                    model.setHasFinished(true);
-                    model.setStart(false);
-                    canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    scoreMenu.setText("Score: 0");
-                    snake.resetSnake();
-                    this.gameFinished();
-                    return;
-                }
-                if(food.eaten(snake)) {
-                    model.setScore( model.getScore() + 500 );
-                    model.setSnakeLength(model.getSnakeLength() + 1 );
-                    snake.setLength(model.getSnakeLength());
-                    scoreMenu.setText("Score: " + model.getScore());
-                    food = new Food( canvas.getHeight(), canvas.getWidth() );
-                }
+        if(model.hasFinished())
+            return;
 
+        if(model.start()) {
+            if(snake.eatBody() || snake.outOfBounds(model.getLevel()) || !paddleIsSafe()) {
+                model.setHasFinished(true);
+                model.setStart(false);
                 canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                food.draw(graphicsContext);
-                snake.draw(graphicsContext);
-                snake.move();
+
+                snake.resetSnake();
+                this.gameFinished();
+                return;
             }
 
+            if(food.eaten(snake)) {
+
+                if(food.getFoodScore() != 0) {
+                    model.setScore( model.getScore(model.getLevel()) + food.getFoodScore(), model.getLevel() );
+                    snake.setLength( snake.getLength() + 1 );
+                    scoreMenu.setText( "Score: " + model.getScore(model.getLevel()) );
+                    if(!this.checkIfGameCanContinue())
+                        return;
+                }
+
+                food = new Food( canvas.getHeight(), canvas.getWidth() );
+            }
+
+            canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            if( model.getLevel() != 1 )
+                food.decrementTime();
+
+            food.draw(graphicsContext);
+            snake.draw(graphicsContext);
+            snake.move(model.getLevel());
+            this.drawPaddle();
         }
 
-        private void gameFinished() {
-                restartButton.setVisible(true);
-                exitButton.setVisible(true);
-                endScene.setVisible(true);
+    }
+
+    private boolean checkIfGameCanContinue() {
+        if(model.getScore(model.getLevel()) < model.getMaxScore(model.getLevel()))
+            return true;
+
+        model.setStart(false);
+        if(model.getLevel() + 1 > model.getMaxLevel())
+            this.gameEnd();
+
+        else {
+            model.setLevel(model.getLevel() + 1);
+            this.setLevelOptions();
+            this.ProgressPane.setVisible(true);
+        }
+        return false;
+    }
+
+    private void setLevelOptions() {
+        switch (model.getLevel()) {
+            case 2:
+                Level2.setDisable(false);
+                break;
+            case 3 :
+                Level3.setDisable(false);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    private boolean paddleIsSafe() {
+        if(!isPaddle)
+            return  true;
+
+        return !paddleA.eaten(snake)
+                && !paddleB.eaten(snake)
+                && !paddleC.eaten(snake);
+    }
+
+    private void gameFinished() {
+        if(model.getScore(model.getLevel()) > model.getHighScore()) {
+            model.setHighScore( model.getScore(model.getLevel()) );
         }
 
-        @Override
-        public void onKeyPressed(KeyEvent event) {
-                snake.keyPressed(event);
+        endPane.setVisible(true);
+    }
+
+    @Override
+    public void onKeyPressed(KeyEvent event) {
+        if(event.getCode().isArrowKey())
+            snake.keyPressed(event);
+    }
+
+    private void gameEnd() {
+        congratPane.setVisible(true);
+    }
+
+    private void makePaddle() {
+        if(model.getLevel() >= 3) {
+            paddleA = new Paddle(100, 100);
+            paddleB = new Paddle(400, 100);
+            paddleC = new Paddle(250,300 );
+            isPaddle = true;
         }
+
+    }
+
+    private void drawPaddle() {
+        if(model.getLevel() == 3) {
+            paddleA.draw(graphicsContext);
+            paddleB.draw(graphicsContext);
+            paddleC.draw(graphicsContext);
+        }
+
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.snakeGame;
 
 public interface Model {
+
     /**
      * initialise the model
      * set the initial score to zero
@@ -10,12 +11,12 @@ public interface Model {
      * sets the player name. Player can choose to play as anonymous
      * @param player The name of the player
      */
-    void setPlayerName( String player );
+    void setPlayerName(String player);
 
     /**
      * @return the player name.
      */
-    String getPlayerName();
+     String getPlayerName();
 
     /**
      * set the length of the snake
@@ -55,7 +56,7 @@ public interface Model {
      * Stores the high score of the player.
      * @param score of the player if the score is greater than the stored high score.
      */
-    void setHighScore( int score );
+    void setHighScore(int score);
 
     /**
      * @return the previously stored high score if there is otherwise returns 0.
@@ -64,15 +65,17 @@ public interface Model {
 
     /**
      * set the current player score
-     * @param Score value of the current player
+     * @param score value of the current player
+     * @param level current level of the game.
      */
-    void setScore(int Score);
+    void setScore(int score, int level);
 
     /**
-     * returns the already stored score
+     * Returns the already stored score.
+     * @param level current level of the game.
      * @return the current player score.
      */
-    int getScore();
+    int getScore(int level);
 
     /**
      * stores whether the game is paused or running.
@@ -86,5 +89,35 @@ public interface Model {
      */
     void setStart(boolean start);
 
+    /**
+     * set the difficulty of the game
+     * @param level is 1, 2 or 3.
+     */
+    void setLevel(int level);
+
+    /**
+     * @return returns the level set by setLevel.
+     */
+    int getLevel();
+
+    /**
+     * @param level is the current level of the game
+     * @return the maximum score for the current level
+     */
+    int getMaxScore(int level);
+
+
+    /**
+     *
+     * @param Level is the level of the game.
+     * @return the minimum score for the level.
+     */
+    int getMinimumScore( int Level );
+
+    /**
+     *
+     * @return the maximum level of the game.
+     */
+    int getMaxLevel();
 
 }
