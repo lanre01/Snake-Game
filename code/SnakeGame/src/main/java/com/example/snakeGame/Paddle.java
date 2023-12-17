@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
  * the paddle must not be touched by the snake otherwise game ends.
  */
 
-public class Paddle extends GameObject implements movable {
+public class Paddle extends GameObject{
 
     public static final Color INNER_COLOR = Color.DARKRED;
 
@@ -23,13 +23,6 @@ public class Paddle extends GameObject implements movable {
         this.yPosition = yPosition;
         this.objectWidth = 50;
         this.objectHeight = 20;
-    }
-
-    @Override
-    public void move(int level) {
-        if( level != 3)
-            return;
-
     }
 
     public boolean eaten(Snake snake) {

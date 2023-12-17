@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +17,7 @@ public class GameView extends Application implements View   {
     static Controller controller;
     Scene scene;
     Timeline timeline;
+    Image icon = GameUtil.getImage("Snake/snake-logo.png");
 
     @Override
     public void initialise(Model model, Controller controller) {
@@ -37,7 +39,7 @@ public class GameView extends Application implements View   {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GameView.class.getResource("game-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GameView.class.getResource("FXML/game-view.fxml"));
         scene = new Scene(fxmlLoader.load());
 
         scene.addEventFilter(Event.ANY, event -> {
@@ -49,7 +51,7 @@ public class GameView extends Application implements View   {
         stage.setTitle("Snake Yipee");
         stage.setScene(scene);
         stage.setResizable(false);
-
+        stage.getIcons().add(icon);
         stage.show();
         timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(30), e -> {

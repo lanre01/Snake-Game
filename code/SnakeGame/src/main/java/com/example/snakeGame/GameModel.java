@@ -20,8 +20,6 @@ public class GameModel implements Model{
         score = new int[MaxLevel];
         snakeLength = 1;
         highScore = 0;
-
-
     }
 
     @Override

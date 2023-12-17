@@ -40,7 +40,7 @@
       </MenuBar>
       <ImageView fx:id="rootImageView" fitHeight="427.0" fitWidth="616.0" layoutX="1.0" layoutY="42.0" pickOnBounds="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="42.0">
          <image>
-            <Image url="@UI-background.png" />
+            <Image url="@../Scenes/1629702755362_84a39ede3284dfcaa71703c98647a8f5.jpg" />
          </image>
       </ImageView>
       <Canvas fx:id="canvas" height="427.0" layoutX="-6.0" layoutY="50.0" onKeyPressed="#keyPressed" width="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
@@ -61,9 +61,9 @@
       </Pane>
       <Pane fx:id="endPane" focusTraversable="true" prefHeight="470.0" prefWidth="616.0" visible="false">
          <children>
-            <ImageView fx:id="endScene" fitHeight="383.0" fitWidth="538.0" layoutX="47.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="endScene" fitHeight="383.0" fitWidth="538.0" layoutX="47.0" layoutY="61.0" pickOnBounds="true">
                <image>
-                  <Image url="@end.png" />
+                  <Image url="@../Scenes/end.png" />
                </image>
             </ImageView>
             <Button fx:id="ExitButton" layoutX="143.0" layoutY="383.0" mnemonicParsing="false" onMousePressed="#exitGame" prefHeight="25.0" prefWidth="121.0" text="Exit Game" />
@@ -74,7 +74,7 @@
          <children>
             <ImageView fitHeight="312.0" fitWidth="373.0" layoutX="122.0" layoutY="54.0" pickOnBounds="true">
                <image>
-                  <Image url="@next-level-image.jpeg" />
+                  <Image url="@../Scenes/next-level-image.jpeg" />
                </image>
             </ImageView>
             <Button fx:id="nextLevel" layoutX="351.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#onStart" prefHeight="25.0" prefWidth="137.0" text="Next Level" />
@@ -83,7 +83,7 @@
       </Pane>
       <Pane fx:id="CongratsPane" prefHeight="470.0" prefWidth="607.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label contentDisplay="CENTER" layoutX="212.0" layoutY="244.0" prefHeight="45.0" prefWidth="228.0" text="You Won!" textAlignment="CENTER" textFill="#0f4210">
+            <Label contentDisplay="CENTER" layoutX="185.0" layoutY="273.0" prefHeight="45.0" prefWidth="228.0" text="You Won!" textAlignment="CENTER" textFill="#0f4210">
                <font>
                   <Font name="Calibri Light Italic" size="50.0" />
                </font>
@@ -94,6 +94,11 @@
                 <Button fx:id="RestartButton3" mnemonicParsing="false" onMouseClicked="#restartGame" text="Restart Game" />
               </buttons>
             </ButtonBar>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="226.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Scenes/win-scene.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
