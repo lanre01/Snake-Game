@@ -12,8 +12,8 @@ public interface movable
 {
 	/**
 	 * This is used to move a game object
-	 * @param difficulty is the difficulty level of the game. The game object may
-	 *                   move depending on the difficulty of the game.
+	 * @param level is the level of the game. The game object may
+	 *                   move depending on the level of the game.
 	 */
-	void move(int difficulty);
+	void move(int level);
 }

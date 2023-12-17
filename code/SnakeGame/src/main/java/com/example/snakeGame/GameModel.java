@@ -1,21 +1,32 @@
 package com.example.snakeGame;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class GameModel implements Model{
-    private  int highScore, score, snakeLength, difficulty;
+    private  int highScore, snakeLength, level, totalScore;
     private  String playerName;
+    private int[] score;
     private boolean hasFinished;
     private boolean food;
     private boolean start;
+    private String[] playerNames;
+    private final int[] maxScore = {300, 400, 500};
+
+    final public int MaxLevel = 3;
 
     @Override
     public void initialise() {
-        score = 0;
+        score = new int[MaxLevel];
         snakeLength = 1;
         highScore = 0;
+
+
     }
 
     @Override
     public void setPlayerName(String player) {
+
         playerName = player;
     }
 
@@ -72,13 +83,16 @@ public class GameModel implements Model{
     }
 
     @Override
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(int score, int level) {
+        this.score[level - 1] = score;
     }
 
     @Override
-    public int getScore() {
-        return score;
+    public int getScore(int Level) {
+        if(Level <= 0)
+            return 0;
+
+        return score[Level - 1];
     }
 
     @Override
@@ -92,14 +106,31 @@ public class GameModel implements Model{
     }
 
     @Override
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Override
-    public int getDifficulty() {
-        return difficulty;
+    public int getLevel() {
+        return level;
     }
 
+    @Override
+    public int getMaxScore(int level) {
+        return maxScore[level - 1];
+    }
+
+
+    @Override
+    public int getMinimumScore( int Level ) {
+        if(level == 1)
+            return 0;
+        return maxScore[level - 2];
+    }
+
+    @Override
+    public int getMaxLevel() {
+        return MaxLevel;
+    }
 
 }

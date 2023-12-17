@@ -32,6 +32,11 @@ public class Paddle extends GameObject implements movable {
 
     }
 
+    public boolean eaten(Snake snake) {
+
+        return this.getRectangle().intersects(snake.getRectangle());
+    }
+
     @Override
     public void draw(GraphicsContext graphics) {
         graphics.setFill(INNER_COLOR);
