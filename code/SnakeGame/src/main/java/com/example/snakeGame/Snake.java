@@ -55,6 +55,9 @@ public class Snake extends GameObject implements movable {
      */
     public boolean eatBody()
     {
+        if(this.length <= 3)
+            return false;
+
         boolean body = false;
         for (Point point : bodyPoints)
         {
@@ -136,7 +139,7 @@ public class Snake extends GameObject implements movable {
                     right = false;
 
                     newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
-                    this.move(0);
+                    //this.move(0);
                 }
                 break;
 
@@ -148,7 +151,7 @@ public class Snake extends GameObject implements movable {
                     right = false;
 
                     newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
-                    this.move(0);
+                    //this.move(0);
                 }
                 break;
 
@@ -160,7 +163,7 @@ public class Snake extends GameObject implements movable {
                     left = true;
 
                     newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
-                    this.move(0);
+                    //this.move(0);
                 }
                 break;
 
@@ -172,7 +175,7 @@ public class Snake extends GameObject implements movable {
                     right = true;
 
                     newImgSnakeHead = IMG_SNAKE_HEAD;
-                    this.move(0);
+                    //this.move(0);
                 }
 
             default:
@@ -201,8 +204,8 @@ public class Snake extends GameObject implements movable {
      * Add or subtract from the xPosition or yPosition based on the direction of the snake.
      */
     @Override
-    public void move(int difficulty) {
-        if(difficulty == 1){
+    public void move(int level) {
+        if(level == 1){
             this.easyMove();
             return;
         }

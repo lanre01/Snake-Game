@@ -9,14 +9,13 @@ public interface Model {
     /**
      * sets the player name. Player can choose to play as anonymous
      * @param player The name of the player
-     * @param  level is the level the player is player.
      */
-    void setPlayerName(String player, int level);
+    void setPlayerName(String player);
 
     /**
      * @return the player name.
      */
-     String getPlayerName(int level);
+     String getPlayerName();
 
     /**
      * set the length of the snake
@@ -56,24 +55,26 @@ public interface Model {
      * Stores the high score of the player.
      * @param score of the player if the score is greater than the stored high score.
      */
-    void setHighScore(int score, int level);
+    void setHighScore(int score);
 
     /**
      * @return the previously stored high score if there is otherwise returns 0.
      */
-    int getHighScore(int level);
+    int getHighScore();
 
     /**
      * set the current player score
-     * @param Score value of the current player
+     * @param score value of the current player
+     * @param level current level of the game.
      */
-    void setScore(int Score);
+    void setScore(int score, int level);
 
     /**
-     * returns the already stored score
+     * Returns the already stored score.
+     * @param level current level of the game.
      * @return the current player score.
      */
-    int getScore();
+    int getScore(int level);
 
     /**
      * stores whether the game is paused or running.
@@ -97,6 +98,22 @@ public interface Model {
      * @return returns the level set by setLevel.
      */
     int getLevel();
+
+    /**
+     * @param level is the current level of the game
+     * @return the maximum score for the current level
+     */
+    int getMaxScore(int level);
+
+    /**
+     * @return the total score of the player
+     */
+    int getTotalScore();
+
+    /**
+      * @param Score is the current total score of the player
+     */
+    void setTotalScore(int Score);
 
 
 }

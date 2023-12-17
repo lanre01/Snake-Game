@@ -1,34 +1,39 @@
 package com.example.snakeGame;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class GameModel implements Model{
-    private  int highScore, score, snakeLength, level;
+    private  int highScore, snakeLength, level, totalScore;
     private  String playerName;
+    private int[] score;
     private boolean hasFinished;
     private boolean food;
     private boolean start;
     private String[] playerNames;
-    private final int[] maxScore = {10000, 5000, 3000};
-    private int[] highScores;
+    private final int[] maxScore = {300, 400, 3000};
+
+    final private int MaxLevel = 3;
 
     @Override
     public void initialise() {
-        score = 0;
+        score = new int[MaxLevel];
         snakeLength = 1;
         highScore = 0;
-        playerNames = new String[3];
-        highScores = new int[3];
+
+
     }
 
     @Override
-    public void setPlayerName(String player, int level) {
+    public void setPlayerName(String player) {
 
-        playerNames[level - 1] = player;
+        playerName = player;
     }
 
 
     @Override
-    public String getPlayerName(int level) {
-        return playerNames[level - 1];
+    public String getPlayerName() {
+        return playerName;
     }
 
 
@@ -68,23 +73,26 @@ public class GameModel implements Model{
     }
 
     @Override
-    public void setHighScore(int score, int level) {
-        highScores[level - 1] = score;
+    public void setHighScore(int score) {
+        highScore = score;
     }
 
     @Override
-    public int getHighScore(int level) {
-        return highScores[level - 1];
+    public int getHighScore() {
+        return highScore;
     }
 
     @Override
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(int score, int level) {
+        this.score[level - 1] = score;
     }
 
     @Override
-    public int getScore() {
-        return score;
+    public int getScore(int Level) {
+        if(Level <= 0)
+            return 0;
+
+        return score[Level - 1];
     }
 
     @Override
@@ -107,5 +115,19 @@ public class GameModel implements Model{
         return level;
     }
 
+    @Override
+    public int getMaxScore(int level) {
+        return maxScore[level - 1];
+    }
+
+    @Override
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    @Override
+    public void setTotalScore(int Score) {
+        this.totalScore = Score;
+    }
 
 }

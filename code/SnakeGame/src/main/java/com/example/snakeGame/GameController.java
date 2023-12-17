@@ -19,49 +19,55 @@ public class GameController implements Controller {
         Canvas canvas;
         GraphicsContext graphicsContext;
         Menu scoreMenu;
-        MenuItem highScorer;
+        MenuItem highScorer, Level1, Level2, Level3;
         Menu highScore, playerName;
-        Pane endPane;
+        Pane endPane, ProgressPane;
         Paddle paddleA, paddleB, paddleC;
         boolean isPaddle = false;
+        final private int MAX_LEVEL = 3;
+        private int totalScore = 0 ;
 
         @Override
         public void initialise(View view, Model model) {
             this.model = model;
             this.view = view;
-            model.setScore(0);
+
             model.setLevel(1);
-            model.setHighScore(0, model.getLevel());
+            model.setHighScore(0);
         }
 
         @Override
          public void startup(ViewController.ObjectToNotify object) {
-            this.canvas = object.canvas;
-            this.scoreMenu = object.scoreMenu;
-            this.highScore = object.highScore;
-            this.highScorer = object.highScorer;
-            this.playerName = object.playerName;
-            this.endPane = object.endPane;
+            this.initialiseViewObjects(object);
 
             endPane.setVisible(false);
             graphicsContext = canvas.getGraphicsContext2D();
-
-            if (model.getHighScore(model.getLevel()) < model.getScore()) {
-               model.setHighScore(model.getScore(), model.getLevel());
-               highScorer.setText(playerName.getText());
-               highScore.setText("High Score: " + model.getHighScore(model.getLevel()));
+            if( model.getLevel() == 1) {
+                model.setScore(0, model.getLevel());
             }
-
-            model.setScore(0);
-            scoreMenu.setText("Score: 0");
-            model.setStart(true);
-            model.setHasFinished(false);
+            highScore.setText("High Score: " + model.getHighScore());
+            scoreMenu.setText("Score: " + model.getScore(model.getLevel()));
             snake = new Snake(20, 20, IMG_SNAKE_BODY);
             snake.setLength(1);
             snake.setFrameWidthHeight( canvas.getWidth(), canvas.getHeight() );
             food = new Food( canvas.getHeight(), canvas.getWidth());
             this.makePaddle();
+            model.setStart(true);
+            model.setHasFinished(false);
          }
+
+    private void initialiseViewObjects(ViewController.ObjectToNotify object) {
+        this.canvas = object.canvas;
+        this.scoreMenu = object.scoreMenu;
+        this.highScore = object.highScore;
+        this.highScorer = object.highScorer;
+        this.playerName = object.playerName;
+        this.endPane = object.endPane;
+        this.ProgressPane = object.ProgressPane;
+        this.Level1 = object.Level1;
+        this.Level2 = object.Level2;
+        this.Level3 = object.Level3;
+    }
 
     /**
      * check if the game is finished ? return : continue
@@ -101,10 +107,11 @@ public class GameController implements Controller {
             if(food.eaten(snake)) {
 
                 if(food.getFoodScore() != 0) {
-                    model.setScore( model.getScore() + food.getFoodScore() );
-                    this.checkGameScore();
+                    model.setScore( model.getScore(model.getLevel()) + food.getFoodScore(), model.getLevel() );
                     snake.setLength( snake.getLength() + 1 );
-                    scoreMenu.setText( "Score: " + model.getScore() );
+                    scoreMenu.setText( "Score: " + model.getScore(model.getLevel()) );
+                    if(!this.checkIfGameCanContinue())
+                        return;
                 }
 
                 food = new Food( canvas.getHeight(), canvas.getWidth() );
@@ -122,8 +129,35 @@ public class GameController implements Controller {
 
     }
 
-    private void checkGameScore() {
+    private boolean checkIfGameCanContinue() {
+        if(model.getScore(model.getLevel()) < model.getMaxScore(model.getLevel()))
+            return true;
 
+        if(model.getLevel() > MAX_LEVEL)
+            this.gameEnd();
+
+        else {
+            model.setStart(false);
+            model.setTotalScore(model.getTotalScore() + model.getScore(model.getLevel()));
+            model.setLevel(model.getLevel() + 1);
+            model.setScore(0, model.getLevel());
+            this.setLevelOptions();
+            this.ProgressPane.setVisible(true);
+        }
+        return false;
+    }
+
+    private void setLevelOptions() {
+        switch (model.getLevel()) {
+            case 2:
+                Level2.setDisable(false);
+                break;
+            case 3 :
+                Level3.setDisable(false);
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -137,6 +171,13 @@ public class GameController implements Controller {
     }
 
     private void gameFinished() {
+        model.setTotalScore(model.getTotalScore() + model.getScore(model.getLevel()));
+
+        if(model.getTotalScore() > model.getHighScore()) {
+            model.setHighScore( model.getScore(model.getLevel()) );
+        }
+        model.setScore(0, model.getLevel());
+        //model.setScore(model.getScore(model.getLevel() - 1), model.getLevel());
         endPane.setVisible(true);
     }
 
@@ -151,7 +192,7 @@ public class GameController implements Controller {
     }
 
     private void makePaddle() {
-        if(model.getLevel() == 3) {
+        if(model.getLevel() >= 3) {
             paddleA = new Paddle(100, 100);
             paddleB = new Paddle(400, 100);
             paddleC = new Paddle(250,300 );
