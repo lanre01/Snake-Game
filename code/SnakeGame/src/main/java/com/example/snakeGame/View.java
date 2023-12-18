@@ -1,5 +1,9 @@
 package com.example.snakeGame;
 
+/**
+ * Responsible for creating the stage for the game.
+ * It also ensures the stage is refreshed at specific time interval to update the game.
+ */
 public interface View {
     /**
      * Initialise the view

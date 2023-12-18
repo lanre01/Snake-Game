@@ -1,14 +1,9 @@
 package com.example.snakeGame;
 
 /**
- * 
- * @Project Snakee
- * @Description Fyrsta viðmótið
- * @Author Sigurður Sigurðardóttir
- * @version Ekki viss
- */ 
-
-public interface movable
+ * This class controls if a game object should move.
+ */
+public interface Movable
 {
 	/**
 	 * This is used to move a game object

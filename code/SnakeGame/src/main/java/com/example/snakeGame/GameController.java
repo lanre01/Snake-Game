@@ -2,7 +2,6 @@ package com.example.snakeGame;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -26,6 +25,12 @@ public class GameController implements Controller {
     Paddle paddleA, paddleB, paddleC;
     boolean isPaddle = false;
     int minimumScore = 0;
+
+
+    /**
+     * No use
+     */
+    public GameController() {}
 
     @Override
     public void initialise(View view, Model model) {

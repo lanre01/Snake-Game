@@ -1,6 +1,5 @@
 package com.example.snakeGame;
 
-import javafx.scene.input.KeyEvent;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

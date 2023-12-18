@@ -5,10 +5,22 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.paint.Color;
 import java.util.Objects;
 
+/**
+ * GameUtil is used to get any images, scenes that may be used in the game.
+ * It also provides the rotateImage function to rotate images.
+ */
 public class GameUtil {
+	/**
+	 * No use
+	 */
 	public GameUtil() {
 	}
 
+	/**
+	 * used to get an image from the resources folder in the JavaFx application.
+	 * @param imagePath is the path of the image in the resource folder
+	 * @return an image that is generated from the image in the resource folder
+	 */
 	public static Image getImage(String imagePath) {
 		Image image = null;
 		try {
@@ -22,7 +34,12 @@ public class GameUtil {
 	}
 
 
-
+	/**
+	 * It is used to rotate an image, specifically the snake head when arrow keys are pressed.
+	 * @param image is the image that needs to be rotated.
+	 * @param degree the amount of rotation that should be done.
+	 * @return the rotated image.
+	 */
 	public static Image rotateImage(Image image, int degree) {
 		ImageView imageView = new ImageView(image);
 		imageView.setRotate(degree);
@@ -31,22 +48,5 @@ public class GameUtil {
 		params.setFill(Color.TRANSPARENT);
 
         return imageView.snapshot(params, null);
-
-
-
-
-
-
-
-		/*int w = bufferedImage.getWidth();
-		int h = bufferedImage.getHeight();
-		int t = bufferedImage.getColorModel().getTransparency();
-		BufferedImage i;
-		Graphics2D graphics2d;
-		(graphics2d = (i = new BufferedImage(w, h, t)).createGraphics()).setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		graphics2d.rotate(Math.toRadians((double)degree), (double)(w / 2), (double)(h / 2));
-		graphics2d.drawImage(bufferedImage, 0, 0, (ImageObserver)null);
-		graphics2d.dispose();
-		return i;*/
 	}
 }

@@ -3,15 +3,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
- * paddle class creates a rectangle on the screen
- * the paddle must not be touched by the snake otherwise game ends.
+ * The paddle class creates a rectangle on the screen.
+ * The paddle must not be touched by the snake otherwise game ends.
  */
-
 public class Paddle extends GameObject{
 
+    /**
+     * This is the color of the paddle.
+     */
     public static final Color INNER_COLOR = Color.DARKRED;
-
-    public static final int DEF_MOVE_AMOUNT = 5;
 
     /**
      * Paddle constructor
@@ -25,6 +25,11 @@ public class Paddle extends GameObject{
         this.objectHeight = 20;
     }
 
+    /**
+     * Check if the snake has collided with the paddle.
+     * @param snake is the snake in the game.
+     * @return true if the snake has collided and false if otherwise.
+     */
     public boolean eaten(Snake snake) {
 
         return this.getRectangle().intersects(snake.getRectangle());

@@ -1,8 +1,6 @@
 package com.example.snakeGame;
 
-import javafx.scene.image.Image;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class LevelUtilTest {
@@ -19,8 +17,8 @@ class LevelUtilTest {
      */
     @Test
     void  testAllRequiredScenesAreStore() {
-        assertTrue(LevelUtil.images.get("1") instanceof Image);
-        assertTrue(LevelUtil.images.get("2") instanceof Image);
-        assertTrue(LevelUtil.images.get("3") instanceof Image);
+        assertNotNull(LevelUtil.images.get("1"));
+        assertNotNull(LevelUtil.images.get("2"));
+        assertNotNull(LevelUtil.images.get("3"));
     }
 }
