@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 public class MusicPlayer extends Thread
 {
 
-	private String filename;
+	public String filename;
 	public static Player player;
 	static boolean playing = true;
 
