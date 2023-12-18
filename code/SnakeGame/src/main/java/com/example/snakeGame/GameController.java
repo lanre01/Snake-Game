@@ -20,7 +20,7 @@ public class GameController implements Controller {
     GraphicsContext graphicsContext;
     Menu scoreMenu;
     MenuItem highScorer, Level1, Level2, Level3;
-    Menu highScore, playerName;
+    Menu highScore, playerName, levelText;
     Pane endPane, ProgressPane, congratPane;
     ImageView rootImage;
     Paddle paddleA, paddleB, paddleC;
@@ -44,6 +44,7 @@ public class GameController implements Controller {
         graphicsContext = canvas.getGraphicsContext2D();
 
         model.setScore(model.getMinimumScore(model.getLevel()), model.getLevel());
+        levelText.setText( "Level " + model.getLevel() );
         highScore.setText("High Score: " + model.getHighScore());
         scoreMenu.setText("Score: " + model.getScore(model.getLevel()));
         snake = new Snake(20, 20, IMG_SNAKE_BODY);
@@ -69,6 +70,7 @@ public class GameController implements Controller {
         this.Level3 = object.Level3;
         this.congratPane = object.congratPane;
         this.rootImage = object.rootImage;
+        this.levelText = object.levelText;
     }
 
     @Override
@@ -155,6 +157,7 @@ public class GameController implements Controller {
     private void gameFinished() {
         if(model.getScore(model.getLevel()) > model.getHighScore()) {
             model.setHighScore( model.getScore(model.getLevel()) );
+            highScorer.setText("High Scorer: " + model.getPlayerName() );
         }
 
         endPane.setVisible(true);

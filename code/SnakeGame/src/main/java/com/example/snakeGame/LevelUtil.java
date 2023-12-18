@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LevelUtil {
+    /**
+     * Hashmap that stores the scenes used in the game
+     */
     public static Map<String, Image> images = new HashMap<>();
 
     public LevelUtil() {

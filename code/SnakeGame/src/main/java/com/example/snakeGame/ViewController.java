@@ -29,7 +29,7 @@ public class ViewController {
     private Button ExitButton3;
 
     @FXML
-    private Menu Level;
+    private Menu levelText;
 
     @FXML
     private MenuItem Level1;
@@ -106,18 +106,41 @@ public class ViewController {
     @FXML
     private Pane startPane;
 
-
+    /**
+     * Used to restart the game.
+     * @param event from the restart button.
+     */
     @FXML
     void restartGame(MouseEvent event) {
         endPane.setVisible(false);
         startPane.setVisible(true);
-        nameLabel.setDisable(true);
         CongratsPane.setVisible(false);
+        if(nameLabel.getText().length() <= 5) {
+            if(!nameLabel.getText().isEmpty()) {
+                playerName.setText("Player: " + nameLabel.getText());
+
+            }
+        }
+        else {
+            playerName.setText("Player: " + nameLabel.getText().substring(0,5));
+        }
+        model.setPlayerName(nameLabel.getText());
     }
+
+    /**
+     * Used to exit the game and also pause the game.
+     * @param event is from when exit buttons are clicked
+     */
     @FXML
     void exitGame(MouseEvent event) {
        Platform.exit();
+       MusicPlayer.stopPlaying();
     }
+
+    /**
+     * Used to change level from the home screen.
+     * @param event when on the level menu is pressed
+     */
     @FXML
     void changeLevel(ActionEvent event) {
 
@@ -135,27 +158,34 @@ public class ViewController {
         }
     }
 
-    @FXML
-    void keyPressed(KeyEvent event) {
 
-    }
-
-
+    /**
+     * Starts the game
+     * @param event when start is clicked
+     */
     @FXML
     void onStart(MouseEvent event) {
         if(nameLabel.getText().length() <= 5) {
-            if(!nameLabel.getText().isEmpty())
+            if(!nameLabel.getText().isEmpty()) {
                 playerName.setText("Player: " + nameLabel.getText());
+
+            }
         }
         else {
             playerName.setText("Player: " + nameLabel.getText().substring(0,5));
         }
+        model.setPlayerName(nameLabel.getText());
         ProgressPane.setVisible(false);
         startPane.setVisible(false);
         pauseButton.setDisable(false);
         controller.startup(new ObjectToNotify());
     }
 
+
+    /**
+     * Controls when the game is start or paused.
+     * @param event is the mouse event when the pause button is clicked.
+     */
     @FXML
     void pauseOrStartGame(MouseEvent event) {
         model.setStart(!model.start());
@@ -168,16 +198,27 @@ public class ViewController {
         }
     }
 
+    /**
+     * Initialise the ViewController
+     * @param controller is the controller for the ViewController
+     * @param model is th model for the ViewController.
+     */
     public void initialise(Controller controller, Model model) {
         ViewController.controller = controller;
         ViewController.model = model;
     }
 
+    /**
+     * controls the view when the Menu item in settings is clicked
+     * @param event when the menu items are clicked.
+     */
     @FXML
     void menuExitOrRestart(ActionEvent event) {
-        if(event.getSource() == ExitButton4)
+        if(event.getSource() == ExitButton4) {
+            MusicPlayer.stopPlaying();
             Platform.exit();
-        if(event.getSource() == Menurestart) {
+        }
+        else if(event.getSource() == Menurestart) {
             endPane.setVisible(false);
             startPane.setVisible(true);
             nameLabel.setDisable(true);
@@ -201,6 +242,7 @@ public class ViewController {
         public Pane ProgressPane;
         public MenuItem Level1, Level2, Level3;
         public  ImageView rootImage;
+        public Menu levelText;
 
         /**
          * Constructor for the class
@@ -216,6 +258,7 @@ public class ViewController {
             this.Level1 = ViewController.this.Level1;
             this.Level2 = ViewController.this.Level2;
             this.Level3 = ViewController.this.Level3;
+            this.levelText = ViewController.this.levelText;
             this.congratPane = ViewController.this.CongratsPane;
             this.rootImage = ViewController.this.rootImageView;
         }

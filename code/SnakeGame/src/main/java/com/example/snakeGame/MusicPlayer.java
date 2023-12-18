@@ -8,8 +8,9 @@ import java.io.FileInputStream;
 public class MusicPlayer extends Thread
 {
 
-	private String filename;
-	public Player player;
+	public String filename;
+	public static Player player;
+	static boolean playing = true;
 
 	public MusicPlayer(String filename)
 	{
@@ -21,13 +22,10 @@ public class MusicPlayer extends Thread
 		new Thread()
 		{
 			@Override
-			public void run()
-			{
+			public void run() {
 				super.run();
-				while (true) {
-					try
-					{
-						//BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(filename));
+				while(playing) {
+					try {
 						player = new Player(new BufferedInputStream(new FileInputStream(filename)));
 						player.play();
 
@@ -47,6 +45,11 @@ public class MusicPlayer extends Thread
 	{
 		MusicPlayer musicPlayer = new MusicPlayer(filename);
 		musicPlayer.play();
+	}
+
+	public static void stopPlaying() {
+		playing = false;
+		player.close();
 	}
 
 
