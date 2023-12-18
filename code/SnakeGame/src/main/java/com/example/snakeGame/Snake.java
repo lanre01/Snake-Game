@@ -203,6 +203,7 @@ public class Snake extends GameObject implements movable {
     /**
      * Controls the movement of the snake on the view.
      * Add or subtract from the xPosition or yPosition based on the direction of the snake.
+     * @param level is the level of the game. Level 1 has a different rule for moving
      */
     @Override
     public void move(int level) {

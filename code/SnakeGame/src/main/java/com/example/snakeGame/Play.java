@@ -1,25 +1,26 @@
 package com.example.snakeGame;
 
-public class Main {
+public class Play {
 
     Controller controller;
     Model model;
     View view;
-    ViewController vController;
+    ViewController viewController;
 
-    public  Main() {
+    public Play() {
         model = new GameModel();
         controller = new GameController();
         view = new GameView();
-        vController = new ViewController();
+        viewController = new ViewController();
 
-        vController.initialise(controller, model);
+        viewController.initialise(controller, model);
         model.initialise();
         controller.initialise(view, model);
         view.initialise(model, controller);
     }
 
     public static void main(String[] args) {
-        new Main();
+        MusicPlayer.getMusicPlay("src/main/resources/com/example/snakeGame/Music/frogger.mp3");
+        new Play();
     }
 }

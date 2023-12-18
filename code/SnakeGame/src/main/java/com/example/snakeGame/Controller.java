@@ -17,7 +17,7 @@ public interface Controller {
      * saves the score if the score is higher or discard if otherwise.
      * @param object stores all parameters (menu, canvas) that need to be updated during the game
      */
-    public void startup(ViewController.ObjectToNotify object) ;
+    void startup(ViewController.ObjectToNotify object) ;
 
     /**
      * Update the model when the snake eat food.

@@ -52,6 +52,9 @@ public class GameView extends Application implements View   {
         stage.setResizable(false);
         stage.getIcons().add(icon);
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            MusicPlayer.stopPlaying();
+        });
         timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(30), e -> {
             controller.update();
@@ -59,6 +62,7 @@ public class GameView extends Application implements View   {
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+
     }
 
 

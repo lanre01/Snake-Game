@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="470.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.snakeGame.ViewController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.snakeGame.ViewController">
    <children>
-      <MenuBar layoutY="-1.0" prefHeight="45.0" prefWidth="461.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="-1.0">
+      <MenuBar layoutY="-1.0" prefHeight="45.0" prefWidth="461.0" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu fx:id="playerName" mnemonicParsing="false" text="Player Anonymous " />
           <Menu fx:id="scoreMenu" mnemonicParsing="false" text="Score : 0" />
@@ -32,7 +32,7 @@
                   <MenuItem fx:id="ExitButton4" mnemonicParsing="false" onAction="#menuExitOrRestart" text="Exit game" />
                </items>
             </Menu>
-            <Menu fx:id="Level" mnemonicParsing="false" text="Level" />
+            <Menu fx:id="levelText" mnemonicParsing="false" text="Level" />
         </menus>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -43,8 +43,8 @@
             <Image url="@../Scenes/home-scene.jpg" />
          </image>
       </ImageView>
-      <Canvas fx:id="canvas" height="427.0" layoutX="-6.0" layoutY="50.0" onKeyPressed="#keyPressed" width="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
-      <Button fx:id="pauseButton" disable="true" layoutX="438.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#pauseOrStartGame" prefHeight="45.0" prefWidth="157.0" text="Pause" textAlignment="CENTER" textFill="#140707" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="459.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Canvas fx:id="canvas" height="427.0" layoutX="-6.0" layoutY="50.0" width="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
+      <Button fx:id="pauseButton" disable="true" layoutX="438.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#pauseOrStartGame" prefHeight="40.0" prefWidth="157.0" text="Pause" textAlignment="CENTER" textFill="#140707" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="459.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Pane fx:id="startPane" focusTraversable="true" layoutX="78.0" layoutY="58.0" prefHeight="378.0" prefWidth="474.0">
          <children>
             <Label fx:id="questionLabel" layoutX="11.0" layoutY="90.0" prefHeight="68.0" prefWidth="228.0" text="Don't Be Anonymous! What is your name?" />
