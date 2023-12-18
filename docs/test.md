@@ -85,4 +85,7 @@
 |8.1|Test to check the image hash map is not null|N/A|Image hashmap is not null| image hashmap is not null|Passed|N/A|
 |8.1|Test to check the scenes are correclty stored|N/A| Scenes are correctly store|Scenes were correclty stored|Passed|N/A|
 
-
+###### Test for MusicPlayer
+| Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
+|---------|------|-------|-----------------|----------------|---------------|--------|
+|9.1|Test if the filename is correclty set|filename|the same filename|the same filename|Passed|N/A|
