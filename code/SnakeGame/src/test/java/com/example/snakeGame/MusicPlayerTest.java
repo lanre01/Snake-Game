@@ -10,6 +10,6 @@ class MusicPlayerTest {
         MusicPlayer musicPlayer = new
                 MusicPlayer("src/main/resources/com/example/snakeGame/Music/frogger.mp3");
 
-        assertNotNull(musicPlayer.filename);
+        assertEquals("src/main/resources/com/example/snakeGame/Music/frogger.mp3", musicPlayer.filename);
     }
 }
