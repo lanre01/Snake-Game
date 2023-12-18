@@ -29,7 +29,6 @@ public class GameView extends Application implements View   {
     @Override
     public void refreshView() {
 
-
     }
 
     @Override

@@ -33,7 +33,6 @@ public class Food extends GameObject implements Timer
 
 	public int getFoodScore() {
         return Math.max(foodScore, 0);
-
     }
 
 	@Override

@@ -11,7 +11,7 @@ public class GameModel implements Model{
     private boolean food;
     private boolean start;
     private String[] playerNames;
-    private final int[] maxScore = {300, 400, 500};
+    private final int[] maxScore = {10000, 8000, 7000};
 
     final public int MaxLevel = 3;
 
@@ -121,7 +121,7 @@ public class GameModel implements Model{
 
     @Override
     public int getMinimumScore( int Level ) {
-        if(level == 1)
+        if(level <= 1)
             return 0;
         return maxScore[level - 2];
     }
