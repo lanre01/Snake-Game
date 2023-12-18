@@ -63,9 +63,6 @@
 
 
 
-
-
-
 ###### Test for ImageUtil
 | Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
 |---------|------|-------|-----------------|----------------|---------------|--------|
@@ -82,6 +79,10 @@
 |7.3|Test if the food score is initially 300|N/A|300|300|Passed|N/A|
 |7.4|Test if food score decrements|N/A|297|297|Passed|N/A|
 
-
+###### Test for LevelUtil
+| Test id | Test | Input | Expected Output | Actuall OutPut | Pass or Fail | comments|
+|---------|------|-------|-----------------|----------------|---------------|--------|
+|8.1|Test to check the image hash map is not null|N/A|Image hashmap is not null| image hashmap is not null|Passed|N/A|
+|8.1|Test to check the scenes are correclty stored|N/A| Scenes are correctly store|Scenes were correclty stored|Passed|N/A|
 
 
