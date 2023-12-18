@@ -5,14 +5,19 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class stores all the scenes needed in the game.
+ */
 public class LevelUtil {
     /**
      * Hashmap that stores the scenes used in the game
      */
     public static Map<String, Image> images = new HashMap<>();
 
-    public LevelUtil() {
-    }
+    /**
+     * No use
+     */
+    public LevelUtil() {}
 
     static {
         images.put("1", GameUtil.getImage("Scenes/UI-background.png"));

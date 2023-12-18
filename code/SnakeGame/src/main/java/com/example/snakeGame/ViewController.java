@@ -1,19 +1,18 @@
 package com.example.snakeGame;
 
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * This controls the FXML files used in the game application.
+ */
 public class ViewController {
     static Controller controller;
     static Model model;
@@ -105,6 +104,11 @@ public class ViewController {
 
     @FXML
     private Pane startPane;
+
+    /**
+     * No use
+     */
+    public  ViewController() {}
 
     /**
      * Used to restart the game.

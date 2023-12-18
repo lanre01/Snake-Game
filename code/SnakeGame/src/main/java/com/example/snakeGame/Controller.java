@@ -1,8 +1,12 @@
 package com.example.snakeGame;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * The controller controls the main logic in the game.
+ * It responsible for when to draw the snake, food and paddle on the screen.
+ * It is also responsible for passing input like the arrow keys into the snake.
+ */
 public interface Controller {
     /**
      * initialise the controller

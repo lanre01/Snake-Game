@@ -4,9 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.image.Image;
 
+/**
+ * This class stores the images needed during the game in a HashMap.
+ * The hashMap can be accessed using either numbers or phrases depending on how it is stored.
+ */
 public class ImageUtil {
+
+	/**
+	 * The hashMap that stores the images.
+	 */
 	public static Map<String, Image> images = new HashMap<>();
 
+	/**
+	 * No use
+	 */
 	public ImageUtil() {
 	}
 

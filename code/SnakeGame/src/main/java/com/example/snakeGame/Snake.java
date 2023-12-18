@@ -2,7 +2,6 @@ package com.example.snakeGame;
 
 import java.awt.*;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +9,13 @@ import javafx.scene.image.Image;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Snake extends GameObject implements movable {
+/**
+ * This class creates the snake that is drawn on the view during the game.
+ */
+public class Snake extends GameObject implements Movable {
+    /**
+     * the body points of the position of the snake as it moves.
+     */
     public static List<Point> bodyPoints = new LinkedList<>();
     private final Image IMG_SNAKE_HEAD = ImageUtil.images.get("snake-head-right");
     private  Image newImgSnakeHead = ImageUtil.images.get("snake-head-right");
@@ -72,10 +77,11 @@ public class Snake extends GameObject implements movable {
     /**
      * Checks if the snake is out of bound
      * @return true if the snake is out of bounds, the game can end and false if otherwise.
+     * @param level is the level of the game.
      */
-    public boolean outOfBounds(int difficulty)
+    public boolean outOfBounds(int level)
     {
-        if(difficulty == 1)
+        if(level <= 1)
             return  false;
 
         boolean bounds = false;
@@ -191,10 +197,14 @@ public class Snake extends GameObject implements movable {
     public void setLength( int length ){this.length = length;}
 
     /**
+     * Used to get the snake length.
      * @return the length of the snake
      */
     public int getLength() {return this.length;}
 
+    /**
+     * Resets the body points on the snake when the game ends.
+     */
     public void resetSnake() {
         bodyPoints.clear();
     }

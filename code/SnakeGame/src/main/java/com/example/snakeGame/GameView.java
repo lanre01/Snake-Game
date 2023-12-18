@@ -12,12 +12,22 @@ import javafx.util.Duration;
 import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
+/**
+ * This class extends the Application class in javaFx to make the view.
+ * It also implements the View class.
+ * It controls the display of the game.
+ */
 public class GameView extends Application implements View   {
     static Model model;
     static Controller controller;
     Scene scene;
     Timeline timeline;
     Image icon = GameUtil.getImage("Snake/snake-logo.png");
+
+    /**
+     * No use
+     */
+    public GameView() {}
 
     @Override
     public void initialise(Model model, Controller controller) {

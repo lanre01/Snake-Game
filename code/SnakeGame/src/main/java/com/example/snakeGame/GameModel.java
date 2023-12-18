@@ -1,7 +1,5 @@
 package com.example.snakeGame;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class GameModel implements Model{
     private  int highScore, snakeLength, level, totalScore;
@@ -14,6 +12,11 @@ public class GameModel implements Model{
     private final int[] maxScore = {10000, 8000, 7000};
 
     final public int MaxLevel = 3;
+
+    /**
+     * No use
+     */
+    public GameModel() {}
 
     @Override
     public void initialise() {
