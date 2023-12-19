@@ -2,6 +2,8 @@ package com.example.snakeGame;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.example.snakeGame.GameUtil;
 import javafx.scene.image.Image;
 
 /**

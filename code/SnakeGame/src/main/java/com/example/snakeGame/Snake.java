@@ -143,7 +143,6 @@ public class Snake extends GameObject implements Movable {
 
                     newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
                     bodyPoints.removeLast();
-                    this.move(0);
                 }
                 break;
 
@@ -156,7 +155,6 @@ public class Snake extends GameObject implements Movable {
 
                     newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
                     bodyPoints.removeLast();
-                    this.move(0);
                 }
                 break;
 
@@ -169,7 +167,6 @@ public class Snake extends GameObject implements Movable {
 
                     newImgSnakeHead = GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
                     bodyPoints.removeLast();
-                    this.move(0);
                 }
                 break;
 
@@ -182,7 +179,6 @@ public class Snake extends GameObject implements Movable {
 
                     newImgSnakeHead = IMG_SNAKE_HEAD;
                     bodyPoints.removeLast();
-                    this.move(0);
                 }
 
             default:
