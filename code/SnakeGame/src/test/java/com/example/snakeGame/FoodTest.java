@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FoodTest {
     static Food food;
-    static  Snake snake;
+    static Snake snake;
     @BeforeAll
     static void startUp() {
         food = new Food(300, 300);

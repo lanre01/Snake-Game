@@ -1,7 +1,7 @@
 package com.example.snakeGame;
 
 
-public class GameModel implements Model{
+public class GameModel implements Model {
     private  int highScore, snakeLength, level, totalScore;
     private  String playerName;
     private int[] score;

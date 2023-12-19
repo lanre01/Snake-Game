@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
  * The paddle class creates a rectangle on the screen.
  * The paddle must not be touched by the snake otherwise game ends.
  */
-public class Paddle extends GameObject{
+public class Paddle extends GameObject {
 
     /**
      * This is the color of the paddle.

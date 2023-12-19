@@ -26,7 +26,7 @@ public class GameUtil {
 		try {
 			image = new Image(Objects.requireNonNull(GameUtil.class.getResourceAsStream(imagePath)));
 		} catch (Exception e) {
-			//e.printStackTrace();
+
 			System.err.println(imagePath);
 		}
 

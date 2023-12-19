@@ -10,7 +10,7 @@ public interface View {
      * @param model The model which has the information about the board
      * @param controller The controller to inform when something happens - e.g. a space is selected
      */
-    void initialise( Model model, Controller controller );
+    void initialise(Model model, Controller controller );
 
     /**
      * Refresh the display
