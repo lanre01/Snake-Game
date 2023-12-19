@@ -45,6 +45,7 @@ public class GameController implements Controller {
     @Override
      public void startup(ViewController.ObjectToNotify object) {
         this.initialiseViewObjects(object);
+        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         endPane.setVisible(false);
         graphicsContext = canvas.getGraphicsContext2D();
@@ -132,6 +133,9 @@ public class GameController implements Controller {
         else {
             model.setLevel(model.getLevel() + 1);
             this.setLevelOptions();
+            snake.resetSnake();
+            rootImage.setImage(LevelUtil.images.get("" + 0));
+            model.setHasFinished(true);
             this.ProgressPane.setVisible(true);
         }
         return false;
@@ -161,11 +165,12 @@ public class GameController implements Controller {
     }
 
     private void gameFinished() {
-        if(model.getScore(model.getLevel()) > model.getHighScore()) {
+        if(model.getScore(model.getLevel()) >= model.getHighScore()) {
             model.setHighScore( model.getScore(model.getLevel()) );
             highScorer.setText("High Scorer: " + model.getPlayerName() );
         }
-
+        model.setHasFinished(true);
+        rootImage.setImage(LevelUtil.images.get("" + 0));
         endPane.setVisible(true);
     }
 
@@ -176,6 +181,13 @@ public class GameController implements Controller {
     }
 
     private void gameEnd() {
+        if(model.getScore(model.getLevel()) >= model.getHighScore()) {
+            model.setHighScore( model.getScore(model.getLevel()) );
+            highScorer.setText("High Scorer: " + model.getPlayerName() );
+        }
+        model.setHasFinished(true);
+        snake.resetSnake();
+        rootImage.setImage(LevelUtil.images.get("" + 0));
         congratPane.setVisible(true);
     }
 

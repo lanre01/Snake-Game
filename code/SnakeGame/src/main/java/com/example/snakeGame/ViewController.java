@@ -140,8 +140,8 @@ public class ViewController {
      */
     @FXML
     void exitGame(MouseEvent event) {
-       Platform.exit();
        MusicPlayer.stopPlaying();
+       Platform.exit();
     }
 
     /**
@@ -195,6 +195,9 @@ public class ViewController {
      */
     @FXML
     void pauseOrStartGame(MouseEvent event) {
+        if(model.hasFinished())
+            return;
+
         model.setStart(!model.start());
         String buffer = pauseButton.getText();
         if(buffer.compareToIgnoreCase("pause") == 0){

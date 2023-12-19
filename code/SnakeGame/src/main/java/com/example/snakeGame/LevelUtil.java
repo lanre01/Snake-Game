@@ -20,6 +20,7 @@ public class LevelUtil {
     public LevelUtil() {}
 
     static {
+        images.put("0", GameUtil.getImage("Scenes/home-scene.jpg"));
         images.put("1", GameUtil.getImage("Scenes/UI-background.png"));
         images.put("2", GameUtil.getImage("Scenes/UI-background2.png"));
         images.put("3", GameUtil.getImage("Scenes/UI-background3.png"));
