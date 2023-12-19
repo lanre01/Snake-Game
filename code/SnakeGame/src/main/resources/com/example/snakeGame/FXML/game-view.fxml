@@ -28,6 +28,7 @@
                </items></Menu>
             <Menu mnemonicParsing="false" text="Settings">
                <items>
+                  <MenuItem fx:id="musicButton" mnemonicParsing="false" onAction="#playOrPauseMusic" text="Turn off music" />
                   <MenuItem fx:id="Menurestart" mnemonicParsing="false" onAction="#menuExitOrRestart" text="Restart" />
                   <MenuItem fx:id="ExitButton4" mnemonicParsing="false" onAction="#menuExitOrRestart" text="Exit game" />
                </items>

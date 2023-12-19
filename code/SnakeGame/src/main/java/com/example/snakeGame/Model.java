@@ -130,4 +130,16 @@ public interface Model {
      */
     int getMaxLevel();
 
+    /**
+     * Sets the music to either be play or paused
+     * @param music is true if music should play and false if no music should be played.
+     */
+    void setMusic(boolean music);
+
+    /**
+     * Gets the value of the music
+     * @return true if the music is currently being played or false if otherwise
+     */
+    boolean isMusic();
+
 }

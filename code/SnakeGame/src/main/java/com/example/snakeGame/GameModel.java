@@ -12,6 +12,7 @@ public class GameModel implements Model {
     private final int[] maxScore = {10000, 8000, 7000};
 
     final public int MaxLevel = 3;
+    private boolean music;
 
     /**
      * No use
@@ -132,6 +133,16 @@ public class GameModel implements Model {
     @Override
     public int getMaxLevel() {
         return MaxLevel;
+    }
+
+    @Override
+    public void setMusic(boolean music) {
+        this.music = music;
+    }
+
+    @Override
+    public boolean isMusic() {
+        return this.music;
     }
 
 }
