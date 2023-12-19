@@ -11,7 +11,7 @@
 
 <b>How to install and play the game</b>
 
-[Link to download source code] (https:lawal.com)
+[Link to download source code](https://projects.cs.nott.ac.uk/psyla2/comp2013-coursework/-/releases)
 
 
 
