@@ -54,8 +54,8 @@ public class MusicPlayer extends Thread
 	 * Used to get the file path and use the play() method to play the music.
 	 * @param filename is the filepath of the music
 	 */
-	public static void getMusicPlay(String filename)
-	{
+	public static void getMusicPlay(String filename) {
+		playing = true;
 		MusicPlayer musicPlayer = new MusicPlayer(filename);
 		musicPlayer.play();
 	}

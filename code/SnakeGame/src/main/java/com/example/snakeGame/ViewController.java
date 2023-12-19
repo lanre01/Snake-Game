@@ -19,6 +19,9 @@ public class ViewController {
 
 
     @FXML
+    private MenuItem musicButton;
+
+    @FXML
     private Pane CongratsPane;
 
     @FXML
@@ -225,10 +228,28 @@ public class ViewController {
         else if(event.getSource() == Menurestart) {
             endPane.setVisible(false);
             startPane.setVisible(true);
-            nameLabel.setDisable(true);
             CongratsPane.setVisible(false);
         }
 
+    }
+
+    /**
+     * Used to pause or play music
+     * @param event is when the menu item is clicked
+     */
+    @FXML
+    void playOrPauseMusic(ActionEvent event) {
+        if(model.isMusic()){
+            model.setMusic(false);
+            musicButton.setText("Turn on music");
+            MusicPlayer.stopPlaying();
+        }
+        else if(!model.isMusic()) {
+            model.setMusic(true);
+            musicButton.setText("Turn of music");
+
+            MusicPlayer.getMusicPlay("src/main/resources/com/example/snakeGame/Music/frogger.mp3");
+        }
     }
 
 

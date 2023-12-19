@@ -39,6 +39,7 @@ public class GameController implements Controller {
 
         model.setLevel(1);
         model.setHighScore(0);
+        model.setMusic(true);
     }
 
     @Override
