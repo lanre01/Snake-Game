@@ -267,9 +267,6 @@ public class Snake extends GameObject implements Movable {
                 this.xPosition += snakeSpeed;
                 }
 
-
-
-
         }
     }
 }
