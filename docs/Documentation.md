@@ -2,8 +2,9 @@
 
 ###### Initial Class Diagram
 ![class diagram](/docs/classdiagram.png/)
-###### Final Class Diagram
+###### Final Class Diagram and Sequence Diagram
 ![class diagram](/docs/refactoredClassDiagram.png/)
+![Sequence diagram](/docs/sequence-diagram.png/)
 ###### Additions
 
 ##### Testing
