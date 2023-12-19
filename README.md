@@ -9,8 +9,22 @@
 
 [Documentation](/docs/Documentation.md/)
 
-<b>How to install and play the game</b>
+<b>How to Install The Game</b>
+<ul>
+<li>Download the source from the releases from the link below</li>
+<li>Download intelliJ idea and make sure maven and Java jdk 17 and higher is installed</li>
+<li>Open the project with intelliJ and configure the run configuration to run from the Play</li>
+<ul>
 
+<b>How to Play The Game</b>
+<ul>
+<li>The game currently has three levels. </li>
+<li>The game starts by requesting user to provide their name. This is not compulsory. The game uses anonymous when the user does not provide any name.</li>
+<li>The player is also given the option to change level. The options are only available when the player satisfy the requirements(attaining the maximum score for the previous level) for the chosen level.</li>
+<li>At the top of the page, the player can select options from the setting to either exit or restart the game.</li>
+<li>The player can then press the start button to start the game.</li>
+<li>On completion of the first level, the player is shown a scene that gives the user the option to either continue to the next level or exit the game.</li>
+</ul>
 [Link to download source code](https://projects.cs.nott.ac.uk/psyla2/comp2013-coursework/-/releases)
 
 
