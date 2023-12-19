@@ -3,7 +3,7 @@
 ###### Initial Class Diagram
 ![class diagram](/docs/classdiagram.png/)
 ###### Final Class Diagram
-![class diagram](/docs/refactoredClassDiagram.png/)
+![class diagram](/docs/RefactoredClassDiagram.pdf/)
 ###### Additions
 
 ##### Testing
