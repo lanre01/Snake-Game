@@ -9,7 +9,7 @@ public class GameModel implements Model {
     private boolean food;
     private boolean start;
     private String[] playerNames;
-    private final int[] maxScore = {10000, 8000, 7000};
+    private final int[] maxScore = {300, 400, 500};
 
     final public int MaxLevel = 3;
     private boolean music;

@@ -167,6 +167,7 @@ public class GameController implements Controller {
     private void gameFinished() {
         if(model.getScore(model.getLevel()) >= model.getHighScore()) {
             model.setHighScore( model.getScore(model.getLevel()) );
+            highScore.setText("High Score: " + model.getHighScore());
             highScorer.setText("High Scorer: " + model.getPlayerName() );
         }
         model.setHasFinished(true);
@@ -183,6 +184,7 @@ public class GameController implements Controller {
     private void gameEnd() {
         if(model.getScore(model.getLevel()) >= model.getHighScore()) {
             model.setHighScore( model.getScore(model.getLevel()) );
+            highScore.setText("High Score: " + model.getHighScore());
             highScorer.setText("High Scorer: " + model.getPlayerName() );
         }
         model.setHasFinished(true);
