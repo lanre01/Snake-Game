@@ -210,7 +210,7 @@ public class ViewController {
      * @param controller is the controller for the ViewController
      * @param model is th model for the ViewController.
      */
-    public void initialise(Controller controller, Model model) {
+    public static void initialise(Controller controller, Model model) {
         ViewController.controller = controller;
         ViewController.model = model;
     }

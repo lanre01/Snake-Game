@@ -8,7 +8,6 @@ public class Play {
     Controller controller;
     Model model;
     View view;
-    ViewController viewController;
 
     /**
      * The constructor create necessary objects needed for the game.
@@ -18,9 +17,8 @@ public class Play {
         model = new GameModel();
         controller = new GameController();
         view = new GameView();
-        viewController = new ViewController();
 
-        viewController.initialise(controller, model);
+        ViewController.initialise(controller, model);
         model.initialise();
         controller.initialise(view, model);
         view.initialise(model, controller);
